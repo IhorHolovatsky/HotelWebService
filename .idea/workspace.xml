@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff8b13c9-618d-45dd-bedc-8d507a1c5564" name="Default" comment="" />
+    <list default="true" id="ff8b13c9-618d-45dd-bedc-8d507a1c5564" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/HWS_LocalConfiguration.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/HWS_LocalConfiguration.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -597,12 +599,12 @@
       <updated>1490730245408</updated>
       <workItem from="1490730247419" duration="2832000" />
       <workItem from="1490733165406" duration="2496000" />
-      <workItem from="1491041769412" duration="1736000" />
+      <workItem from="1491041769412" duration="1805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7064000" />
+    <option name="totallyTimeSpent" value="7133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
