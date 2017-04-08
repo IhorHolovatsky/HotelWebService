@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Hotel Web Service</title>
 </head>
 <body>
-    WOW! IT WORKS!!!!
+    WOW! IT WORKS!!!! NAZAR TEST!
 </body>
 </html>
