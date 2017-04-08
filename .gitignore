@@ -244,5 +244,4 @@ blog/bin/
 hs_err_pid*
 .idea/workspace.xml
 .idea/runConfigurations/HWS_LocalConfiguration.xml
-HotelWebService.iml
-.idea/runConfigurations/HWS_LocalConfiguration.xml
+
