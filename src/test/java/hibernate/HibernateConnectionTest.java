@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Ihor on 4/8/2017.
  */
