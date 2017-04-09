@@ -15,5 +15,6 @@
 
         <!-- Mapping with model class containing annotations -->
         <mapping class="com.hws.hibernate.models.TestConnection"/>
+        <mapping class="com.hws.hibernate.models.Customer"/>
     </session-factory>
 </hibernate-configuration>
