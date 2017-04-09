@@ -1,5 +1,6 @@
 package com.hws.controllers;
 
+import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.TestConnection;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

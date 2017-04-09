@@ -1,6 +1,8 @@
 package com.hws.hibernate.models;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
@@ -8,6 +10,7 @@ import java.util.UUID;
 /**
  * Created by Ihor on 4/9/2017.
  */
+@Data
 @Entity
 @Table(name="Customer",
         uniqueConstraints={@UniqueConstraint(columnNames={"CustomerId"})})
@@ -49,5 +52,4 @@ public class Customer {
 
     @Column(name="Email", length=30, nullable=false)
     private String Email;
-
 }

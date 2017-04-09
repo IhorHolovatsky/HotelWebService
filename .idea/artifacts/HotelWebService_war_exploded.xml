@@ -98,6 +98,7 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
           <element id="library" level="project" name="Maven: org.webjars:jquery:2.0.3" />
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.0.0" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.16" />
         </element>
       </element>
       <element id="directory" name="META-INF">
