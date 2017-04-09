@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="META-INF:hibernate-annotation.cfg.xml/Hibernate" uuid="4994ea4d-948a-4a07-aa68-ce768693c7df">
+      <database-info product="Microsoft SQL Server" version="13.00.2164" jdbc-version="4.0" driver-name="Microsoft JDBC Driver 4.0 for SQL Server" driver-version="4.0.2206.100">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <user-name>hws_user</user-name>
+      <user-password>df9b</user-password>
+      <resolve-scope>HWS:*</resolve-scope>
+    </data-source>
+  </component>
+</project>
