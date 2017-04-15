@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "Address",
-       uniqueConstraints = { @UniqueConstraint(columnNames = "AddressID")})
+        uniqueConstraints = {@UniqueConstraint(columnNames = "AddressID")})
 public class Address {
 
     @Id
@@ -32,4 +32,20 @@ public class Address {
 
     @Column(name = "ZipCode")
     private String ZipCode;
+
+    public Address() {
+        this(null,
+             null,
+             null,
+             null,
+             null);
+    }
+
+    public Address(String city, String country, String phone, String street, String zipCode) {
+        City = city;
+        Country = country;
+        Phone = phone;
+        Street = street;
+        ZipCode = zipCode;
+    }
 }
