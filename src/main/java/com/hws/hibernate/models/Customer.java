@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -32,24 +33,27 @@ public class Customer {
     @Column(name="DateBirth", length=20, nullable=false)
     private Date DateBirth;
 
-    @Column(name="AddressStreet", length=40, nullable=false)
-    private String AddressStreet;
-
-    @Column(name="AddressTown", length=30, nullable=false)
-    private String AddressTown;
-
-    @Column(name="AddressCountry", length=30, nullable=false)
-    private String AddressCountry;
-
-    @Column(name="AddressZipCode", length=11, nullable=false)
-    private String AddressZipCode;
-
-    @Column(name="WorkPhone", length=20, nullable=false)
-    private String WorkPhone;
-
     @Column(name="HomePhone", length=20, nullable=false)
     private String HomePhone;
 
     @Column(name="Email", length=30, nullable=false)
     private String Email;
+
+    @OneToMany(mappedBy = "Customer", cascade = CascadeType.ALL)
+    private List<Booking> Bookings;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "CustomerId=" + CustomerId +
+                ", FirstName='" + FirstName + '\'' +
+                ", LastName='" + LastName + '\'' +
+                ", MiddleName='" + MiddleName + '\'' +
+                ", DateBirth=" + DateBirth +
+                ", HomePhone='" + HomePhone + '\'' +
+                ", Email='" + Email + '\'' +
+                '}';
+    }
+
+
 }

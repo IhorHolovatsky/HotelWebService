@@ -15,7 +15,17 @@
 
         <!-- Mapping with model class containing annotations -->
         <mapping class="com.hws.hibernate.models.TestConnection"/>
-        <mapping class="com.hws.hibernate.models.Customer"/>
+        <mapping class="com.hws.hibernate.models.Address"/>
         <mapping class="com.hws.hibernate.models.Booking"/>
+        <mapping class="com.hws.hibernate.models.BookingRoom"/>
+        <mapping class="com.hws.hibernate.models.Customer"/>
+        <mapping class="com.hws.hibernate.models.Facility"/>
+        <mapping class="com.hws.hibernate.models.Guest"/>
+        <mapping class="com.hws.hibernate.models.Hotel"/>
+        <mapping class="com.hws.hibernate.models.Payment"/>
+        <mapping class="com.hws.hibernate.models.PaymentMethod"/>
+        <mapping class="com.hws.hibernate.models.Room"/>
+        <mapping class="com.hws.hibernate.models.RoomFacility"/>
+        <mapping class="com.hws.hibernate.models.RoomType"/>
     </session-factory>
 </hibernate-configuration>

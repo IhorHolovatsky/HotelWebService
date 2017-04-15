@@ -1,8 +1,11 @@
 package com.hws.hibernate.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name="TestConnection",
         uniqueConstraints={@UniqueConstraint(columnNames={"Id"})})
@@ -18,23 +21,4 @@ public class TestConnection {
 
     @Column(name="InsertTime", nullable=true)
     private Date insertTime;
-
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-     public Date getInsertTime() {
-        return insertTime;
-    }
-    public void setInsertTime(Date insertTime) {
-        this.insertTime = insertTime;
-    }
 }
