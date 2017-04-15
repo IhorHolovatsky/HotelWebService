@@ -27,12 +27,6 @@ public class HomeController {
 
         model.addObject("TestObject", testConnection);
 
-        Session dbContext = HibernateUtil.getSessionFactory().openSession();
-
-        List<Customer> customers = dbContext.createCriteria(Customer.class).list();
-
-        Booking booking = customers.get(0).getBookings().get(0);
-        String firstName = booking.getCustomer().getFirstName();
         return model;
     }
 
