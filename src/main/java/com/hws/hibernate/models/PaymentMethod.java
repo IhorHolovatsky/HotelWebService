@@ -22,4 +22,10 @@ public class PaymentMethod {
 
     @Column(name = "PaymentMethod")
     private String PaymentMethod;
+
+    public PaymentMethod(){}
+
+    public PaymentMethod(String paymentMethod) {
+        PaymentMethod = paymentMethod;
+    }
 }

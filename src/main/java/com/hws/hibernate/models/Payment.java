@@ -45,4 +45,15 @@ public class Payment {
 
     @Column(name = "TotalAmount")
     private BigDecimal TotalAmount;
+
+    public Payment() {
+    }
+
+    public Payment(UUID bookingId, UUID customerId, String paymentComment, Date dateTimeMade, BigDecimal totalAmount) {
+        BookingId = bookingId;
+        CustomerId = customerId;
+        PaymentComment = paymentComment;
+        DateTimeMade = dateTimeMade;
+        TotalAmount = totalAmount;
+    }
 }

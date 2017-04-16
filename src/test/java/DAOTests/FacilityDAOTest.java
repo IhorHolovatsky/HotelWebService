@@ -26,17 +26,17 @@ public class FacilityDAOTest {
     private SessionFactory _sessionFactory;
     private Session _session;
     private Query _query;
-    private FacilityDAO _customerDAO;
+    private FacilityDAO _facilityDAO;
 
     @Before
     public void setUp() {
-        _customerDAO = new FacilityDAO();
+        _facilityDAO = new FacilityDAO();
 
         _sessionFactory = mock(SessionFactory.class);
         _session = mock(Session.class);
         _query = mock(Query.class);
 
-        _customerDAO.setSessionFactory(_sessionFactory);
+        _facilityDAO.setSessionFactory(_sessionFactory);
 
         when(_sessionFactory.getCurrentSession()).thenReturn(_session);
     }
@@ -61,7 +61,7 @@ public class FacilityDAOTest {
         when(_query.list()).thenReturn(expectedFacilityList);
 
         //Act
-        List<Facility> actualFacilityList = _customerDAO.GetAllFacilities();
+        List<Facility> actualFacilityList = _facilityDAO.GetAllFacilities();
 
         //Assert
         assertNotNull(actualFacilityList);
@@ -77,7 +77,7 @@ public class FacilityDAOTest {
         when(_session.get(Facility.class, FacilityId)).thenReturn(expectedFacility);
 
         //Act
-        Facility actualFacility = _customerDAO.GetFacilityById(FacilityId);
+        Facility actualFacility = _facilityDAO.GetFacilityById(FacilityId);
 
         //Arrange
         assertNotNull(actualFacility);
@@ -90,7 +90,7 @@ public class FacilityDAOTest {
         Facility newFacility = new Facility("WiFi");
 
         //Act
-        _customerDAO.AddNewFacility(newFacility);
+        _facilityDAO.AddNewFacility(newFacility);
 
         //Arrange
         //No Errors
@@ -102,7 +102,7 @@ public class FacilityDAOTest {
         Facility FacilityToUpdate = new Facility("WiFi");
 
         //Act
-        _customerDAO.UpdateFacility(FacilityToUpdate);
+        _facilityDAO.UpdateFacility(FacilityToUpdate);
 
         //Arrange
         //No Errors
@@ -118,7 +118,7 @@ public class FacilityDAOTest {
         when(_session.get(Address.class, FacilityId)).thenReturn(FacilityToDelete);
 
         //Act
-        _customerDAO.DeleteFacilityById(FacilityId);
+        _facilityDAO.DeleteFacilityById(FacilityId);
 
         //Arrange
         //No Errors
