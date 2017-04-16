@@ -7,9 +7,10 @@
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <user-name>hws_user</user-name>
-      <user-password>df9b</user-password>
+      <user-name>root</user-name>
+      <introspection-schemas>HWS:dbo|master:dbo</introspection-schemas>
       <resolve-scope>HWS:*</resolve-scope>
+      <unqualified-resolve-schemas>HWS:*</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>
