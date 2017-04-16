@@ -26,17 +26,17 @@ public class GuestDAOTest {
     private SessionFactory _sessionFactory;
     private Session _session;
     private Query _query;
-    private GuestDAO _customerDAO;
+    private GuestDAO _guestDAO;
 
     @Before
     public void setUp() {
-        _customerDAO = new GuestDAO();
+        _guestDAO = new GuestDAO();
 
         _sessionFactory = mock(SessionFactory.class);
         _session = mock(Session.class);
         _query = mock(Query.class);
 
-        _customerDAO.setSessionFactory(_sessionFactory);
+        _guestDAO.setSessionFactory(_sessionFactory);
 
         when(_sessionFactory.getCurrentSession()).thenReturn(_session);
     }
@@ -61,7 +61,7 @@ public class GuestDAOTest {
         when(_query.list()).thenReturn(expectedGuestList);
 
         //Act
-        List<Guest> actualGuestList = _customerDAO.GetAllGuests();
+        List<Guest> actualGuestList = _guestDAO.GetAllGuests();
 
         //Assert
         assertNotNull(actualGuestList);
@@ -77,7 +77,7 @@ public class GuestDAOTest {
         when(_session.get(Guest.class, GuestId)).thenReturn(expectedGuest);
 
         //Act
-        Guest actualGuest = _customerDAO.GetGuestById(GuestId);
+        Guest actualGuest = _guestDAO.GetGuestById(GuestId);
 
         //Arrange
         assertNotNull(actualGuest);
@@ -90,7 +90,7 @@ public class GuestDAOTest {
         Guest newGuest = new Guest("Ihor", "Golovatskiy", "Test0", new Date());
 
         //Act
-        _customerDAO.AddNewGuest(newGuest);
+        _guestDAO.AddNewGuest(newGuest);
 
         //Arrange
         //No Errors
@@ -102,7 +102,7 @@ public class GuestDAOTest {
         Guest GuestToUpdate = new Guest("Ihor", "Golovatskiy", "Test0", new Date());
 
         //Act
-        _customerDAO.UpdateGuest(GuestToUpdate);
+        _guestDAO.UpdateGuest(GuestToUpdate);
 
         //Arrange
         //No Errors
@@ -118,7 +118,7 @@ public class GuestDAOTest {
         when(_session.get(Address.class, GuestId)).thenReturn(GuestToDelete);
 
         //Act
-        _customerDAO.DeleteGuestById(GuestId);
+        _guestDAO.DeleteGuestById(GuestId);
 
         //Arrange
         //No Errors

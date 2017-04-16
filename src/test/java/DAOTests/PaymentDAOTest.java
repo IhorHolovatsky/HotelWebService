@@ -27,17 +27,17 @@ public class PaymentDAOTest {
     private SessionFactory _sessionFactory;
     private Session _session;
     private Query _query;
-    private PaymentDAO _customerDAO;
+    private PaymentDAO _paymentDAO;
 
     @Before
     public void setUp() {
-        _customerDAO = new PaymentDAO();
+        _paymentDAO = new PaymentDAO();
 
         _sessionFactory = mock(SessionFactory.class);
         _session = mock(Session.class);
         _query = mock(Query.class);
 
-        _customerDAO.setSessionFactory(_sessionFactory);
+        _paymentDAO.setSessionFactory(_sessionFactory);
 
         when(_sessionFactory.getCurrentSession()).thenReturn(_session);
     }
@@ -62,7 +62,7 @@ public class PaymentDAOTest {
         when(_query.list()).thenReturn(expectedPaymentList);
 
         //Act
-        List<Payment> actualPaymentList = _customerDAO.GetAllPayments();
+        List<Payment> actualPaymentList = _paymentDAO.GetAllPayments();
 
         //Assert
         assertNotNull(actualPaymentList);
@@ -78,7 +78,7 @@ public class PaymentDAOTest {
         when(_session.get(Payment.class, PaymentId)).thenReturn(expectedPayment);
 
         //Act
-        Payment actualPayment = _customerDAO.GetPaymentById(PaymentId);
+        Payment actualPayment = _paymentDAO.GetPaymentById(PaymentId);
 
         //Arrange
         assertNotNull(actualPayment);
@@ -91,7 +91,7 @@ public class PaymentDAOTest {
         Payment newPayment = new Payment(UUID.randomUUID(),UUID.randomUUID(),"Test Comment", new Date(), new BigDecimal(50));
 
         //Act
-        _customerDAO.AddNewPayment(newPayment);
+        _paymentDAO.AddNewPayment(newPayment);
 
         //Arrange
         //No Errors
@@ -103,7 +103,7 @@ public class PaymentDAOTest {
         Payment PaymentToUpdate = new Payment(UUID.randomUUID(),UUID.randomUUID(),"Test Comment", new Date(), new BigDecimal(50));
 
         //Act
-        _customerDAO.UpdatePayment(PaymentToUpdate);
+        _paymentDAO.UpdatePayment(PaymentToUpdate);
 
         //Arrange
         //No Errors
@@ -119,7 +119,7 @@ public class PaymentDAOTest {
         when(_session.get(Address.class, PaymentId)).thenReturn(PaymentToDelete);
 
         //Act
-        _customerDAO.DeletePaymentById(PaymentId);
+        _paymentDAO.DeletePaymentById(PaymentId);
 
         //Arrange
         //No Errors
