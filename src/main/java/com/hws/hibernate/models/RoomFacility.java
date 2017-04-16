@@ -36,4 +36,9 @@ public class RoomFacility {
     @JoinColumn(name = "RoomID", updatable = false, insertable = false)
     private Room Room;
 
+    public RoomFacility () {}
+
+    public RoomFacility(String facilityDetails) {
+        FacilityDetails = facilityDetails;
+    }
 }

@@ -1,6 +1,6 @@
 package com.hws.DAO;
 
-import com.hws.hibernate.models.Hotel;
+import com.hws.hibernate.models.RoomFacility;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
-
 /**
  * Created by nazar on 4/16/2017.
  */
-public class HotelDAO {
+public class RoomFacilityDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -23,41 +22,41 @@ public class HotelDAO {
     }
 
     @Transactional
-    public List<Hotel> GetAllHotels(){
+    public List<RoomFacility> GetAllRoomFacilities(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select h from Hotel h");
+        Query query = session.createQuery("select r from RoomFacility r");
         return query.list();
     }
 
     @Transactional
-    public Hotel GetHotelById(UUID HotelId){
+    public RoomFacility GetRoomFacilityById(UUID RoomFacilityId){
         Session session = sessionFactory.getCurrentSession();
-        return (Hotel)session.get(Hotel.class, HotelId);
+        return (RoomFacility)session.get(RoomFacility.class, RoomFacilityId);
     }
 
     @Transactional
-    public Hotel AddNewHotel(Hotel Hotel){
-        Hotel.setHotelId(UUID.randomUUID());
+    public RoomFacility AddNewRoomFacility(RoomFacility RoomFacility){
+        RoomFacility.setRoomFacilityId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (Hotel) session.save(Hotel);
+        return (RoomFacility) session.save(RoomFacility);
     }
 
     @Transactional
-    public void UpdateHotel(Hotel Hotel){
+    public void UpdateRoomFacility(RoomFacility RoomFacility){
         Session session = sessionFactory.getCurrentSession();
-        session.update(Hotel);
+        session.update(RoomFacility);
     }
 
     @Transactional
-    public void DeleteHotelById(UUID HotelId){
-        Hotel HotelToDelete = this.GetHotelById(HotelId);
-        this.DeleteHotel(HotelToDelete);
+    public void DeleteRoomFacilityById(UUID RoomFacilityId){
+        RoomFacility RoomFacilityToDelete = this.GetRoomFacilityById(RoomFacilityId);
+        this.DeleteRoomFacility(RoomFacilityToDelete);
     }
 
     @Transactional
-    public void DeleteHotel(Hotel HotelToDelete){
+    public void DeleteRoomFacility(RoomFacility RoomFacilityToDelete){
         Session session = sessionFactory.getCurrentSession();
-        session.delete(HotelToDelete);
+        session.delete(RoomFacilityToDelete);
     }
 }
