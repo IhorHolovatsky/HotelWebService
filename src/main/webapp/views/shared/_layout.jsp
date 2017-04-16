@@ -12,6 +12,7 @@
 <head>
     <title><tiles:getAsString name="title" /></title>
 
+    <link href="content/css/Site.css" rel="stylesheet"></link>
     <link rel='stylesheet' href='<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css") %>'>
     <link rel='stylesheet' href='<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap-theme.min.css") %>'>
     <script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>'></script>

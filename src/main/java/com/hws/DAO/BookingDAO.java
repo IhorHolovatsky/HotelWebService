@@ -18,6 +18,7 @@ public class BookingDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+
     //NOTE this is a new method and has been added to make testing easier!
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

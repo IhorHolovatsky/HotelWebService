@@ -1,44 +1,30 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">Login</tiles:putAttribute>
     <tiles:putAttribute name="body">
 
-        <div id="mainWrapper">
-            <div class="login-container">
-                <div class="login-card">
-                    <div class="login-form">
-                        <c:url var="loginUrl" value="/login"/>
-                        <form action="${loginUrl}" method="post" class="form-horizontal">
-                            <c:if test="${param.error != null}">
-                                <div class="alert alert-danger">
-                                    <p>Invalid username and password.</p>
-                                </div>
-                            </c:if>
-                            <c:if test="${param.logout != null}">
-                                <div class="alert alert-success">
-                                    <p>You have been logged out successfully.</p>
-                                </div>
-                            </c:if>
-                            <div class="input-group input-sm">
-                                <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
-                                <input type="text" class="form-control" id="username" name="ssoId"
-                                       placeholder="Enter Username" required>
-                            </div>
-                            <div class="input-group input-sm">
-                                <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                       placeholder="Enter Password" required>
-                            </div>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <div class="container">
 
-                            <div class="form-actions">
-                                <input type="submit"
-                                       class="btn btn-block btn-primary btn-default" value="Log in">
-                            </div>
-                        </form>
-                    </div>
+            <form method="POST" action="/login" class="form-signin">
+                <h2 class="form-heading">Log in</h2>
+
+                <div class="form-group ${error != null ? 'has-error' : ''}">
+                    <span>${message}</span>
+                    <input name="username" type="text" class="form-control" placeholder="Username"
+                           autofocus="true"/>
+                    <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <span>${error}</span>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                    <h4 class="text-center"><a href="#">Create an account</a></h4>
                 </div>
-            </div>
+
+            </form>
+
         </div>
 
     </tiles:putAttribute>

@@ -1,6 +1,7 @@
 package com.hws.DAO;
 
 import com.hws.hibernate.models.User;
+import com.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,10 @@ import java.util.UUID;
 public class UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
+
+    public UserDAO(){
+        sessionFactory = HibernateUtil.getSessionFactory();
+    }
 
     //NOTE this is a new method and has been added to make testing easier!
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -41,6 +46,7 @@ public class UserDAO {
         List<User> userList = new ArrayList<User>();
 
         Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         Query query = session.createQuery("from User u where u.Login = :login");
         query.setParameter("login", login);
         userList = query.list();

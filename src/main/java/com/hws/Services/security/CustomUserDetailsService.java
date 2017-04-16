@@ -23,8 +23,7 @@ import java.util.List;
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserDAO _userDAO;
+    private static UserDAO _userDAO = new UserDAO();
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {

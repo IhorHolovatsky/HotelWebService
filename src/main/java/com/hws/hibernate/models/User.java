@@ -29,9 +29,14 @@ public class User {
     private UUID CustomerId;
 
     @OneToOne
+    @JoinColumn(name = "CustomerID", insertable = false, updatable = false)
     private Customer Customer;
 
     @ManyToMany
+    @JoinTable(name = "security_userInRole", joinColumns = {
+                @JoinColumn(name = "UserID", nullable = false, updatable = false) },
+                            inverseJoinColumns = { @JoinColumn(name = "RoleID",
+                            nullable = false, updatable = false) })
     private List<Role> Roles;
 
     public User() {

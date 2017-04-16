@@ -1,7 +1,9 @@
 package DAOTests;
 
 import com.hws.DAO.UserDAO;
+import com.hws.hibernate.models.Role;
 import com.hws.hibernate.models.User;
+import com.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,6 +16,7 @@ import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -140,5 +143,15 @@ public class UserDAOTest {
         //Arrange
         assertNotNull(actualUser);
         assertSame(expectedUser, actualUser);
+    }
+
+    @Test
+    public void TestGetAllRoles(){
+        UserDAO userDAO = new UserDAO();
+        User adminUser = userDAO.GetUserByLogin("admin");
+
+        List<Role> roles = adminUser.getRoles();
+
+        assertTrue(roles.stream().anyMatch(r -> r.getRoleName().equals("Admin")));
     }
 }
