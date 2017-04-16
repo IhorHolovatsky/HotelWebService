@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +34,22 @@ public class UserDAO {
     public User GetUserById(UUID userId){
         Session session = sessionFactory.getCurrentSession();
         return (User)session.get(User.class, userId);
+    }
+
+    @Transactional
+    public User GetUserByLogin(String login){
+        List<User> userList = new ArrayList<User>();
+
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from User u where u.Login = :login");
+        query.setParameter("login", login);
+        userList = query.list();
+
+        if (userList.size() == 0){
+            return null;
+        }
+
+        return userList.get(0);
     }
 
     @Transactional

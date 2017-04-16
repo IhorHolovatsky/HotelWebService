@@ -121,4 +121,24 @@ public class UserDAOTest {
         //Arrange
         //No Errors
     }
+
+    @Test
+    public void TestMethodGetUserByLogin(){
+        //Arrange
+        String query = "from User u where u.Login = :login";
+        String login = "Lorderot";
+        List<User> usersInSystem = new ArrayList<>();
+        User expectedUser =new User(login, "124");
+        usersInSystem.add(expectedUser);
+
+        when(_session.createQuery(query)).thenReturn(_query);
+        when(_query.list()).thenReturn(usersInSystem);
+
+        //Act
+        User actualUser = _UserDAO.GetUserByLogin(login);
+
+        //Arrange
+        assertNotNull(actualUser);
+        assertSame(expectedUser, actualUser);
+    }
 }
