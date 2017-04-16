@@ -6,7 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Ihor on 4/15/2017.
@@ -21,10 +23,46 @@ public class AddressDAO {
         this.sessionFactory = sessionFactory;
     }
 
+    @Transactional
     public List<Address> GetAllAddresses(){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select a from Address a");
         return query.list();
     }
 
+    @Transactional
+    public Address GetAddressById(UUID addressId){
+        Session session = sessionFactory.getCurrentSession();
+        return (Address)session.get(Address.class, addressId);
+    }
+
+    @Transactional
+    public Address AddNewAddress(Address address){
+        address.setAddressId(UUID.randomUUID());
+
+        Session session = sessionFactory.getCurrentSession();
+        return (Address)session.save(address);
+    }
+
+    @Transactional
+    public void UpdateAddress(Address address){
+        address.setAddressId(UUID.randomUUID());
+
+        Session session = sessionFactory.getCurrentSession();
+        session.update(address);
+    }
+
+    @Transactional
+    public void DeleteAddressById(UUID addressId){
+        Session session = sessionFactory.getCurrentSession();
+
+        Address addressToDelete = this.GetAddressById(addressId);
+        this.DeleteAddress(addressToDelete);
+    }
+
+    @Transactional
+    public void DeleteAddress(Address addressToDelete){
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(addressToDelete);
+    }
 }
