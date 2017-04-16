@@ -3,12 +3,13 @@ package com.hws.hibernate.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by Ihor on 4/9/2017.
+ * Created by Nazar on 4/9/2017.
  */
 @Data
 @Entity
@@ -36,6 +37,16 @@ public class Booking {
     @OneToMany(mappedBy = "Booking", cascade = CascadeType.ALL)
     private List<BookingRoom> BookingRooms;
 
+    public Booking() {
+        this(null,
+                null);
+    }
+
+    public Booking(Date dateTimeMade, String bookingComment) {
+        DateTimeMade = dateTimeMade;
+        BookingComment = bookingComment;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -45,6 +56,4 @@ public class Booking {
                 ", BookingComment='" + BookingComment + '\'' +
                 '}';
     }
-
-
 }

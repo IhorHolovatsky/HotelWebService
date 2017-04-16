@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 /**
  * Created by Ihor on 4/15/2017.
  */
-public class AddressDaoTest {
+public class AddressDAOTest {
 
     private SessionFactory _sessionFactory;
     private Session _session;
