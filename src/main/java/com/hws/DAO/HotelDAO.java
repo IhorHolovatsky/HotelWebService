@@ -60,5 +60,4 @@ public class HotelDAO {
         Session session = sessionFactory.getCurrentSession();
         session.delete(HotelToDelete);
     }
-
 }

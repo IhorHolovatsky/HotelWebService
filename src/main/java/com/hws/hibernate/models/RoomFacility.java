@@ -26,7 +26,7 @@ public class RoomFacility {
     @JoinColumn(name = "FacilityID", updatable = false, insertable = false)
     private Facility Facility;
 
-    @Column(name = "FaciliteDetails")
+    @Column(name = "FacilityDetails")
     private String FacilityDetails;
 
     @Column(name = "RoomID")
@@ -36,4 +36,9 @@ public class RoomFacility {
     @JoinColumn(name = "RoomID", updatable = false, insertable = false)
     private Room Room;
 
+    public RoomFacility () {}
+
+    public RoomFacility(String facilityDetails) {
+        FacilityDetails = facilityDetails;
+    }
 }

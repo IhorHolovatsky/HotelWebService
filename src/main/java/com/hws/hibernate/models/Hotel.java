@@ -3,12 +3,11 @@ package com.hws.hibernate.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by Ihor on 4/15/2017.
+ * Created by nazar on 4/15/2017.
  */
 @Entity
 @Data
