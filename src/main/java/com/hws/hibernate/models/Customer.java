@@ -55,6 +55,8 @@ public class Customer {
                 '}';
     }
 
+    public Customer(){ }
+
     public Customer(String firstName, String lastName, String middleName, Date dateBirth){
         FirstName = firstName;
         LastName = lastName;

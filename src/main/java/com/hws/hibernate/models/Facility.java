@@ -20,4 +20,10 @@ public class Facility {
 
     @Column(name = "FacilityName")
     private String Name;
+
+    public Facility(){ }
+
+    public Facility(String name){
+        Name = name;
+    }
 }

@@ -46,6 +46,8 @@ public class BookingRoom {
     @Column(name = "EndDate")
     private Date EndDate;
 
+    public BookingRoom(){ }
+
     public BookingRoom(Date startDate, Date endDate){
         this(startDate,endDate, null);
     }
