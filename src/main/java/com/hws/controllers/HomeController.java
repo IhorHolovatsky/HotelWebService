@@ -1,5 +1,6 @@
 package com.hws.controllers;
 
+import com.hws.DAO.BookingRoomDAO;
 import com.hws.hibernate.models.Booking;
 import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.TestConnection;
@@ -26,7 +27,6 @@ public class HomeController {
         testConnection.setName("I'm test spring MVC model!");
 
         model.addObject("TestObject", testConnection);
-
         return model;
     }
 

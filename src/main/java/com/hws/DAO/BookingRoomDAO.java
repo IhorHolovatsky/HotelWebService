@@ -1,19 +1,21 @@
 package com.hws.DAO;
 
 import com.hws.hibernate.models.Address;
+import com.hws.hibernate.models.BookingRoom;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by Ihor on 4/15/2017.
+ * Created by Ihor on 4/16/2017.
  */
-public class AddressDAO {
+public class BookingRoomDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -24,41 +26,42 @@ public class AddressDAO {
     }
 
     @Transactional
-    public List<Address> GetAllAddresses(){
+    public List<BookingRoom> GetAllBookingRooms(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select a from Address a");
+        Query query = session.createQuery("select br from BookingRoom br");
         return query.list();
     }
 
     @Transactional
-    public Address GetAddressById(UUID addressId){
+    public BookingRoom GetBookingRoomById(UUID bookingRoomId){
         Session session = sessionFactory.getCurrentSession();
-        return (Address)session.get(Address.class, addressId);
+        return (BookingRoom)session.get(BookingRoom.class, bookingRoomId);
     }
 
     @Transactional
-    public Address AddNewAddress(Address address){
-        address.setAddressId(UUID.randomUUID());
+    public BookingRoom AddNewBookingRoom(BookingRoom bookingRoom){
+        bookingRoom.setBookingRoomId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (Address)session.save(address);
+        return (BookingRoom) session.save(bookingRoom);
     }
 
     @Transactional
-    public void UpdateAddress(Address address){
+    public void UpdateBookingRoom(BookingRoom bookingRoom){
         Session session = sessionFactory.getCurrentSession();
-        session.update(address);
+        session.update(bookingRoom);
     }
 
     @Transactional
-    public void DeleteAddressById(UUID addressId){
-        Address addressToDelete = this.GetAddressById(addressId);
-        this.DeleteAddress(addressToDelete);
+    public void DeleteBookingRoomById(UUID bookingRoomId){
+        BookingRoom bookingRoomToDelete = this.GetBookingRoomById(bookingRoomId);
+        this.DeleteBookingRoom(bookingRoomToDelete);
     }
 
     @Transactional
-    public void DeleteAddress(Address addressToDelete){
+    public void DeleteBookingRoom(BookingRoom bookingRoomToDelete){
         Session session = sessionFactory.getCurrentSession();
-        session.delete(addressToDelete);
+        session.delete(bookingRoomToDelete);
     }
+
 }

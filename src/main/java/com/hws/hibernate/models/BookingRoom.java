@@ -1,6 +1,8 @@
 package com.hws.hibernate.models;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.awt.print.Book;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.UUID;
 /**
  * Created by Ihor on 4/9/2017.
  */
+@Data
 @Entity
 @Table(name = "BookingRoom",
        uniqueConstraints = {@UniqueConstraint(columnNames = "BookingRoomID")})
@@ -42,4 +45,15 @@ public class BookingRoom {
 
     @Column(name = "EndDate")
     private Date EndDate;
+
+    public BookingRoom(Date startDate, Date endDate){
+        this(startDate,endDate, null);
+    }
+
+    public BookingRoom(Date startDate, Date endDate, UUID guestId){
+        StartDate = startDate;
+        EndDate = endDate;
+        GuestId = guestId;
+    }
+
 }
