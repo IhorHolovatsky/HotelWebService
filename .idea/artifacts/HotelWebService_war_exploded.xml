@@ -103,6 +103,8 @@
           <element id="library" level="project" name="Maven: org.webjars:jquery:2.0.3" />
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.0.0" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.16" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
         </element>
       </element>
       <element id="directory" name="META-INF">

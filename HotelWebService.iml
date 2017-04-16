@@ -141,5 +141,7 @@
     <orderEntry type="library" name="Maven: org.webjars:jquery:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.16" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
   </component>
 </module>

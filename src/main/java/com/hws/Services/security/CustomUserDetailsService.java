@@ -34,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
+
         return new org.springframework.security.core.userdetails.User(
                 domainUser.getLogin(),
                 domainUser.getPassword(),
