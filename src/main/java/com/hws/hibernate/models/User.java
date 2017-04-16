@@ -33,4 +33,12 @@ public class User {
 
     @ManyToMany
     private List<Role> Roles;
+
+    public User() {
+    }
+
+    public User(String login, String password) {
+        Login = login;
+        Password = password;
+    }
 }

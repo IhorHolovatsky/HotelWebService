@@ -22,4 +22,11 @@ public class Role {
 
     @Column(name = "RoleName")
     private String RoleName;
+
+    public Role() {
+    }
+
+    public Role(String roleName) {
+        RoleName = roleName;
+    }
 }
