@@ -26,7 +26,7 @@ public class RoomFacility {
     @JoinColumn(name = "FacilityID", updatable = false, insertable = false)
     private Facility Facility;
 
-    @Column(name = "FaciliteDetails")
+    @Column(name = "FacilityDetails")
     private String FacilityDetails;
 
     @Column(name = "RoomID")
