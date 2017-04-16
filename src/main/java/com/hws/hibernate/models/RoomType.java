@@ -24,4 +24,11 @@ public class RoomType {
 
     @Column(name = "MaxCapacity")
     private int MaxCapacity;
+
+    public RoomType(){ }
+
+    public RoomType(String roomType, int maxCapacity) {
+        RoomType = roomType;
+        MaxCapacity = maxCapacity;
+    }
 }
