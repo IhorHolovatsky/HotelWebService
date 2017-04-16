@@ -3,6 +3,7 @@ package com.hws.hibernate.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,4 +33,11 @@ public class Hotel {
 
     @OneToMany(mappedBy = "Hotel")
     private List<Room> Rooms;
+
+    public Hotel(){ }
+
+    public Hotel(String hotelName, String description){
+        HotelName = hotelName;
+        Description = description;
+    }
 }

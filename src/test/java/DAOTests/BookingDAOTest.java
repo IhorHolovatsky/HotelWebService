@@ -60,7 +60,7 @@ public class BookingDAOTest {
         when(_query.list()).thenReturn(expectedBookingList);
 
         //Act
-        List<Booking> actualBookingList = _bookingDAO.GetAllBooking();
+        List<Booking> actualBookingList = _bookingDAO.GetAllBookings();
 
         //Assert
         assertNotNull(actualBookingList);

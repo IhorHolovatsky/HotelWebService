@@ -1,6 +1,6 @@
 package com.hws.DAO;
 
-import com.hws.hibernate.models.Booking;
+import com.hws.hibernate.models.Hotel;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,8 +13,7 @@ import java.util.UUID;
 /**
  * Created by nazar on 4/16/2017.
  */
-public class BookingDAO {
-
+public class HotelDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -24,43 +23,42 @@ public class BookingDAO {
     }
 
     @Transactional
-    public List<Booking> GetAllBookings(){
+    public List<Hotel> GetAllHotels(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select b from Booking b");
+        Query query = session.createQuery("select h from Hotel h");
         return query.list();
     }
 
-    //GetAllCustomersById
-
     @Transactional
-    public Booking GetBookingById(UUID bookingId){
+    public Hotel GetHotelById(UUID HotelId){
         Session session = sessionFactory.getCurrentSession();
-        return (Booking)session.get(Booking.class, bookingId);
+        return (Hotel)session.get(Hotel.class, HotelId);
     }
 
     @Transactional
-    public Booking AddNewBooking(Booking booking){
-        booking.setBookingId(UUID.randomUUID());
+    public Hotel AddNewHotel(Hotel Hotel){
+        Hotel.setHotelId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (Booking)session.save(booking);
+        return (Hotel) session.save(Hotel);
     }
 
     @Transactional
-    public void UpdateBooking(Booking booking){
+    public void UpdateHotel(Hotel Hotel){
         Session session = sessionFactory.getCurrentSession();
-        session.update(booking);
+        session.update(Hotel);
     }
 
     @Transactional
-    public void DeleteBookingById(UUID bookingId){
-        Booking bookingToDelete = this.GetBookingById(bookingId);
-        this.DeleteBooking(bookingToDelete);
+    public void DeleteHotelById(UUID HotelId){
+        Hotel HotelToDelete = this.GetHotelById(HotelId);
+        this.DeleteHotel(HotelToDelete);
     }
 
     @Transactional
-    public void DeleteBooking(Booking bookingToDelete){
+    public void DeleteHotel(Hotel HotelToDelete){
         Session session = sessionFactory.getCurrentSession();
-        session.delete(bookingToDelete);
+        session.delete(HotelToDelete);
     }
+
 }

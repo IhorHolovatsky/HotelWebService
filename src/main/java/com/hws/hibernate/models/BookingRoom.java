@@ -57,5 +57,4 @@ public class BookingRoom {
         EndDate = endDate;
         GuestId = guestId;
     }
-
 }
