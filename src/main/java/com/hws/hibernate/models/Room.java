@@ -58,4 +58,11 @@ public class Room {
 
         return new ArrayList<>();
     }
+
+    public Room () {}
+
+    public Room(int floor, int number) {
+        Floor = floor;
+        Number = number;
+    }
 }
