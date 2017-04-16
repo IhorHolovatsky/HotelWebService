@@ -39,4 +39,13 @@ public class Guest {
 
     @OneToMany(mappedBy = "Guest")
     private List<BookingRoom> BookingRooms;
+
+    public Guest(){ }
+
+    public Guest(String firstName, String lastName, String middleName, Date dateBirth){
+        FirstName = firstName;
+        LastName = lastName;
+        MiddleName = middleName;
+        DateBirth = dateBirth;
+    }
 }
