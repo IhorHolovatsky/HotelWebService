@@ -29,5 +29,4 @@ public class HomeController {
         model.addObject("TestObject", testConnection);
         return model;
     }
-
 }

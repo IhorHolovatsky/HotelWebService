@@ -96,6 +96,18 @@
             <version>6.1.0.jre8</version>
         </dependency>
 
+        <!-- NO-SQL -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
         <!-- Tiles -->
         <dependency>
             <groupId>org.apache.tiles</groupId>
