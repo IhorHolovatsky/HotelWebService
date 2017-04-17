@@ -37,5 +37,4 @@ public class HibernateUtil {
         if(sessionAnnotationFactory == null) sessionAnnotationFactory = buildSessionAnnotationFactory();
         return sessionAnnotationFactory;
     }
-
 }
