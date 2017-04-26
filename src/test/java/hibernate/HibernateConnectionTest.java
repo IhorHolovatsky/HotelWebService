@@ -1,10 +1,10 @@
 package hibernate;
 
 import com.hws.hibernate.models.TestConnection;
-import com.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
+import com.hws.util.HibernateUtil;
 
 import java.util.Date;
 

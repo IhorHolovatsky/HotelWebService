@@ -12,10 +12,10 @@
 <head>
     <title><tiles:getAsString name="title" /></title>
 
-    <link rel='stylesheet' href='<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css") %>'>
-    <link rel='stylesheet' href='<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap-theme.min.css") %>'>
-    <script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>'></script>
-    <script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("js/bootstrap.min.js") %>'></script>
+    <link rel='stylesheet' href='<%= org.webjars.WebJarAssetLocator.getWebJar("css/bootstrap.min.css") %>'>
+    <link rel='stylesheet' href='<%= org.webjars.WebJarAssetLocator.getWebJar("css/bootstrap-theme.min.css") %>'>
+    <script type='text/javascript' src='<%= org.webjars.WebJarAssetLocator.getWebJar("jquery.min.js") %>'></script>
+    <script type='text/javascript' src='<%= org.webjars.WebJarAssetLocator.getWebJar("js/bootstrap.min.js") %>'></script>
 </head>
 <body>
 
