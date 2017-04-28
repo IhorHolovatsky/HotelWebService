@@ -17,28 +17,4 @@ public class HibernateConnectionTest {
     public void OpenSessionTest(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
-
-    @Test
-    public void InsertTest(){
-        TestConnection model = new TestConnection();
-        model.setId(1);
-        model.setName("Unit Test");
-        model.setInsertTime(new Date());
-
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-
-        session.beginTransaction();
-        session.save(model);
-        session.getTransaction().commit();
-    }
-
-    @Test
-    public void DeleteAllTest(){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        session.createQuery("delete from com.hws.hibernate.models.TestConnection").executeUpdate();
-        session.getTransaction().commit();
-    }
 }
