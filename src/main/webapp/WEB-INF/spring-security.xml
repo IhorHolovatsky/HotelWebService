@@ -8,24 +8,23 @@
 
 
     <!-- enable use-expressions -->
-    <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/admin**" access="hasRole('Admin')" />
-
+    <http use-expressions="true">
+        <intercept-url pattern="/Secured/**" access="isAuthenticated()"/>
         <!-- access denied page -->
-        <access-denied-handler error-page="/403" />
+        <!--<access-denied-handler error-page="/403" />-->
         <form-login
                 login-page="/login"
-                default-target-url="/Index"
+                default-target-url="/Secured/User/Index"
                 authentication-failure-url="/login?error"
-                authentication-success-forward-url="/User/Index"
                 username-parameter="username"
                 password-parameter="password" />
         <logout logout-success-url="/login?logout" />
         <!-- enable csrf protection -->
-        <csrf />
+        <csrf disabled="true"/>
     </http>
 
-    <global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
+    <global-method-security pre-post-annotations="enabled"
+                            secured-annotations="enabled"/>
 
     <authentication-manager>
         <authentication-provider user-service-ref="userDetailsServiceImpl">
