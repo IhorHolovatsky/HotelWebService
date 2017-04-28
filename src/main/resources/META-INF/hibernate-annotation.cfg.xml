@@ -27,5 +27,7 @@
         <mapping class="com.hws.hibernate.models.Room"/>
         <mapping class="com.hws.hibernate.models.RoomFacility"/>
         <mapping class="com.hws.hibernate.models.RoomType"/>
+        <mapping class="com.hws.hibernate.models.User"/>
+        <mapping class="com.hws.hibernate.models.Role"/>
     </session-factory>
 </hibernate-configuration>

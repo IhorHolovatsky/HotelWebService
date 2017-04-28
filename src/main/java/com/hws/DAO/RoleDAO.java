@@ -1,6 +1,6 @@
 package com.hws.DAO;
 
-import com.hws.hibernate.models.Booking;
+import com.hws.hibernate.models.Role;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,13 +11,11 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by nazar on 4/16/2017.
+ * Created by Ihor on 4/16/2017.
  */
-public class BookingDAO {
-
+public class RoleDAO {
     @Autowired
     private SessionFactory sessionFactory;
-
 
     //NOTE this is a new method and has been added to make testing easier!
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -25,43 +23,41 @@ public class BookingDAO {
     }
 
     @Transactional
-    public List<Booking> GetAllBookings(){
+    public List<Role> GetAllRoles(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select b from Booking b");
+        Query query = session.createQuery("select r from Role r");
         return query.list();
     }
 
-    //GetAllCustomersById
-
     @Transactional
-    public Booking GetBookingById(UUID bookingId){
+    public Role GetRoleById(UUID roleId){
         Session session = sessionFactory.getCurrentSession();
-        return (Booking)session.get(Booking.class, bookingId);
+        return (Role)session.get(Role.class, roleId);
     }
 
     @Transactional
-    public Booking AddNewBooking(Booking booking){
-        booking.setBookingId(UUID.randomUUID());
+    public Role AddNewRole(Role role){
+        role.setRoleId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (Booking)session.save(booking);
+        return (Role) session.save(role);
     }
 
     @Transactional
-    public void UpdateBooking(Booking booking){
+    public void UpdateRole(Role role){
         Session session = sessionFactory.getCurrentSession();
-        session.update(booking);
+        session.update(role);
     }
 
     @Transactional
-    public void DeleteBookingById(UUID bookingId){
-        Booking bookingToDelete = this.GetBookingById(bookingId);
-        this.DeleteBooking(bookingToDelete);
+    public void DeleteRoleById(UUID roleId){
+        Role roleToDelete = this.GetRoleById(roleId);
+        this.DeleteRole(roleToDelete);
     }
 
     @Transactional
-    public void DeleteBooking(Booking bookingToDelete){
+    public void DeleteRole(Role roleToDelete){
         Session session = sessionFactory.getCurrentSession();
-        session.delete(bookingToDelete);
+        session.delete(roleToDelete);
     }
 }

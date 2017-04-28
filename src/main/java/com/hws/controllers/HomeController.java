@@ -6,8 +6,10 @@ import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.TestConnection;
 import com.util.HibernateUtil;
 import org.hibernate.Session;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -17,9 +19,9 @@ import java.util.*;
  * Created by Ihor on 3/28/2017.
  */
 @Controller
-public class HomeController {
+public class HomeController extends ControllerBase{
 
-    @RequestMapping(value="/Index")
+    @RequestMapping(value="/Index", method = RequestMethod.GET)
     public ModelAndView Index(){
         ModelAndView model = new ModelAndView("Home/Index");
 

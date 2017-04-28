@@ -1,5 +1,6 @@
 package com.util;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -38,4 +39,9 @@ public class HibernateUtil {
         return sessionAnnotationFactory;
     }
 
+    public static Session getCurrentSession() {
+        SessionFactory sessionFactory = getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        return session;
+    }
 }
