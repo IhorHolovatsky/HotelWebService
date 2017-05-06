@@ -43,10 +43,9 @@ public class UserDAO {
 
     @Transactional
     public User GetUserByLogin(String login){
-        List<User> userList = new ArrayList<User>();
+        List<User> userList;
 
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
         Query query = session.createQuery("from User u where u.Login = :login");
         query.setParameter("login", login);
         userList = query.list();

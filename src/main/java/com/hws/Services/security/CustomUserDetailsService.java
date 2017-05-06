@@ -27,7 +27,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User domainUser = _userDAO.GetUserByLogin(login);
+      User domainUser = null;
+        try{
+          domainUser = _userDAO.GetUserByLogin(login);
+      } catch (Exception e){
+          e.getMessage();
+      }
 
         boolean enabled = true;
         boolean accountNonExpired = true;
