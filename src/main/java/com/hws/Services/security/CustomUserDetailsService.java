@@ -1,9 +1,14 @@
 package com.hws.Services.security;
 
 import com.hws.DAO.UserDAO;
+import com.hws.DAO.interfaces.IUserDAO;
 import com.hws.hibernate.models.Role;
 import com.hws.hibernate.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,19 +25,14 @@ import java.util.List;
  * Created by Ihor on 4/16/2017.
  */
 @Service
-@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private static UserDAO _userDAO = new UserDAO();
+    @Autowired
+    IUserDAO _userDAO;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-      User domainUser = null;
-        try{
-          domainUser = _userDAO.GetUserByLogin(login);
-      } catch (Exception e){
-          e.getMessage();
-      }
+        User domainUser = _userDAO.GetUserByLogin(login);
 
         boolean enabled = true;
         boolean accountNonExpired = true;
@@ -64,6 +64,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return authorities;
     }
-
 
 }

@@ -3,13 +3,13 @@ package DAOTests;
 import com.hws.DAO.UserDAO;
 import com.hws.hibernate.models.Role;
 import com.hws.hibernate.models.User;
-import com.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -145,6 +145,7 @@ public class UserDAOTest {
         assertSame(expectedUser, actualUser);
     }
 
+    @Transactional
     @Test
     public void TestGetAllRoles(){
         UserDAO userDAO = new UserDAO();

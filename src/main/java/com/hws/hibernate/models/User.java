@@ -28,11 +28,11 @@ public class User {
     @Column(name = "CustomerID")
     private UUID CustomerId;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CustomerID", insertable = false, updatable = false)
     private Customer Customer;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "security_userInRole", joinColumns = {
                 @JoinColumn(name = "UserID", nullable = false, updatable = false) },
                             inverseJoinColumns = { @JoinColumn(name = "RoleID",

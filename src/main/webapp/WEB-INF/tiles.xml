@@ -6,7 +6,7 @@
 
     <!-- Layout -->
     <definition name="defaultLayout"
-                template="../shared/_layout.jsp">  <!-- this should be as is, because our views are in other folder -->
+                template="/WEB-INF/views/shared/_layout.jsp">  <!-- this should be as is, because our views are in other folder -->
         <!--I swear, it works-->
         <put-attribute name="title" value="" />
         <put-attribute name="body" value=""/>

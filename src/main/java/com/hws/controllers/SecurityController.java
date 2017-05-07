@@ -36,4 +36,8 @@ public class SecurityController extends ControllerBase{
         }
         return "redirect:/login?logout";
     }
+
+    public String register(){
+        return null;
+    }
 }

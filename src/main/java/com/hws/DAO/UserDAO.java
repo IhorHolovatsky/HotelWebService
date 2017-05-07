@@ -1,11 +1,13 @@
 package com.hws.DAO;
 
+import com.hws.DAO.interfaces.IUserDAO;
 import com.hws.hibernate.models.User;
-import com.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -15,12 +17,14 @@ import java.util.UUID;
 /**
  * Created by Ihor on 4/16/2017.
  */
-public class UserDAO {
+@Service
+public class UserDAO implements IUserDAO {
+
     @Autowired
     private SessionFactory sessionFactory;
 
     public UserDAO(){
-        sessionFactory = HibernateUtil.getSessionFactory();
+        //sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     //NOTE this is a new method and has been added to make testing easier!
