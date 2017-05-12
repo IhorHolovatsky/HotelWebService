@@ -15,36 +15,36 @@
 
         <div class="container">
 
+
             <form method="POST" action="/Register" class="form-signin">
                 <h2 class="form-heading">Register New User</h2>
-
+                <br/>
                 <div class="form-group ${error != null ? 'has-error' : ''}">
                     <span>${message}</span>
 
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input id="firstName" name="FirstName" type="text" class="form-control"
+                               autofocus="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input id="lastName" name="LastName" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <span class="tooltip">will be used for login</span>
+                        <input id="email" name="Username" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" name="Password" type="password" class="form-control"/>
+                    </div>
 
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" name="FirstName" type="text" class="form-control"
-                           autofocus="true"/>
-
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" name="LastName" type="text" class="form-control" />
-
-
-                    <label for="dateOfBirth">Date of Birth</label>
-                    <input id="dateOfBirth" name="DateOfBirth" type="text" class="form-control" />
-
-                    <label for="email">Email</label>
-                    <span class="tooltip">will be used for login</span>
-                    <input id="email" name="Username" type="text" class="form-control" />
-
-                    <label for="password">Password</label>
-                    <input id="password" name="Password" type="password" class="form-control"/>
                     <span>${error}</span>
-
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
                     <h4 class="text-center"><a href="#">Cancel</a></h4>
                 </div>
-
             </form>
 
         </div>

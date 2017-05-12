@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,12 +28,15 @@ public class SecurityController extends ControllerBase{
     IRegisterService registerService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(Model model, String error, String logout) {
+    public String loginPage(Model model, String error, String logout, String login) {
         if (error != null)
             model.addAttribute("error", error + " Your username and password is invalid.");
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
+
+        if (login != null)
+            model.addAttribute("login", login);
 
         return "Security/login";
     }
@@ -56,14 +60,15 @@ public class SecurityController extends ControllerBase{
 
     @RequestMapping(value = "/Register", method = RequestMethod.POST)
     @ModelAttribute(value = "com/hws/viewModels/RegisterViewModel.java")
-    public String register(RegisterViewModel model){
+    public ModelAndView register(RegisterViewModel model){
 
         ResponseWrapper<User> result = registerService.RegisterNewUser(model.getUsername(), model.getPassword());
 
         if (!result.IsSuccess){
-            return "redirect:/Register?error=" + result.getErrorMessage();
+            return new ModelAndView("redirect:/Register?error=" + result.getErrorMessage());
         }
-
-        return "redirect:/login";
+        ModelAndView toReturn = new ModelAndView("redirect:/login");
+        toReturn.addObject("login", result.ResponseData.getLogin());
+        return toReturn;
     }
 }

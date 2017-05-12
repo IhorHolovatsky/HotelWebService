@@ -63,7 +63,8 @@ public class UserDAO implements IUserDAO {
         user.setUserId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (User) session.save(user);
+        session.save(user);
+        return user;
     }
 
     @Transactional
