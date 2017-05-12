@@ -144,15 +144,4 @@ public class UserDAOTest {
         assertNotNull(actualUser);
         assertSame(expectedUser, actualUser);
     }
-
-    @Transactional
-    @Test
-    public void TestGetAllRoles(){
-        UserDAO userDAO = new UserDAO();
-        User adminUser = userDAO.GetUserByLogin("admin");
-
-        List<Role> roles = adminUser.getRoles();
-
-        assertTrue(roles.stream().anyMatch(r -> r.getRoleName().equals("Admin")));
-    }
 }
