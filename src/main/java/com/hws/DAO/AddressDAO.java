@@ -1,7 +1,6 @@
 package com.hws.DAO;
 
 import com.hws.hibernate.models.Address;
-import com.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

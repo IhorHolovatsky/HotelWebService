@@ -1,9 +1,12 @@
 package com.hws.Services.security;
 
 import com.hws.DAO.UserDAO;
+import com.hws.DAO.interfaces.ICustomerDAO;
 import com.hws.DAO.interfaces.IUserDAO;
+import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.Role;
 import com.hws.hibernate.models.User;
+import com.hws.viewModels.RegisterViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -16,8 +19,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 
@@ -64,5 +70,4 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return authorities;
     }
-
 }
