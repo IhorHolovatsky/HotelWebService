@@ -16,6 +16,8 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <mvc:resources mapping="/content/**" location="/resources/" />
+    <mvc:view-controller path="/" view-name=""/>
+
     <context:component-scan base-package="com.hws.controllers,com.hws.DAO,com.hws.Services"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

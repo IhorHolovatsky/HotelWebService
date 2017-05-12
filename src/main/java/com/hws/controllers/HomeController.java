@@ -15,7 +15,7 @@ import java.util.*;
 @Controller
 public class HomeController extends ControllerBase{
 
-    @RequestMapping(value="/Index", method = RequestMethod.GET)
+    @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView Index(){
         ModelAndView model = new ModelAndView("Home/Index");
 
