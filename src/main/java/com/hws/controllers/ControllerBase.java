@@ -1,5 +1,8 @@
 package com.hws.controllers;
 
+import com.hws.DAO.interfaces.IUserDAO;
+import com.hws.hibernate.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public abstract class ControllerBase {
 
+    @Autowired
+    IUserDAO userDAO;
+
     protected UserDetails getUserDetais(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -18,6 +24,15 @@ public abstract class ControllerBase {
         }
 
         return null;
+    }
+
+    private User currentUser;
+    protected User getUser(){
+        if (currentUser == null){
+            currentUser = userDAO.GetUserByLogin(getCurrentUserName());
+        }
+
+        return currentUser;
     }
 
     protected String getCurrentUserName(){

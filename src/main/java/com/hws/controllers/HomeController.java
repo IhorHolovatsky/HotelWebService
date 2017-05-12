@@ -20,4 +20,8 @@ public class HomeController extends ControllerBase{
         return "Home/Index";
     }
 
+    @RequestMapping(value = "/Contact", method = RequestMethod.GET)
+    public String ContactUs(){
+        return "Home/Contact";
+    }
 }

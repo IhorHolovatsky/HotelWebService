@@ -76,16 +76,6 @@ form input[type="submit"] {
   font-size: 2rem;
 }
 
-body {
-  background: white;
-  font-family: 'PT Sans', sans-serif;
-  padding: 20px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 /* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
     background-color: #eee;

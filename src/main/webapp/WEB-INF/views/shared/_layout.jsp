@@ -16,6 +16,7 @@
     <link href="${pageContext.servletContext.contextPath}/content/css/Site.css" rel="stylesheet"></link>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap.css" rel='stylesheet'>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap-theme.css" rel='stylesheet'>
+    <tiles:insertAttribute name="styles" />
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/jquery.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/bootstrap.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/bootstrap-datepicker.js"></script>
@@ -30,7 +31,7 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#">Rooms</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="<c:url value="/Contact" />">Contact Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         <c:choose>
