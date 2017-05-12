@@ -16,14 +16,8 @@ import java.util.*;
 public class HomeController extends ControllerBase{
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public ModelAndView Index(){
-        ModelAndView model = new ModelAndView("Home/Index");
-
-        TestConnection testConnection = new TestConnection();
-        testConnection.setName("I'm test spring MVC model!");
-
-        model.addObject("TestObject", testConnection);
-        return model;
+    public String Index(){
+        return "Home/Index";
     }
 
 }

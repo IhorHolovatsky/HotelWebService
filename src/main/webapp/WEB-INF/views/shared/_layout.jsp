@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="border-radius: 0;">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">HWS</a>
@@ -59,5 +59,11 @@
                                                 .addClass('active');
     });
 </script>
+
+<!-- Render body -->
+<div>
+    <tiles:insertAttribute name="scripts" />
+</div>
+
 </body>
 </html>

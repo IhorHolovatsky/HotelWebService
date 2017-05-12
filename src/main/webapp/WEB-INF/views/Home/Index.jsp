@@ -1,5 +1,5 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<tiles:insertDefinition name="defaultLayout" >
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">Index Page</tiles:putAttribute>
 
 
@@ -7,7 +7,8 @@
 
         <div class="video-background">
             <div class="video-foreground">
-                <iframe src="https://www.youtube.com/embed/bDpO8i4Aty0?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=bDpO8i4Aty0" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/bDpO8i4Aty0?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=bDpO8i4Aty0"
+                        frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -21,21 +22,19 @@
                     Pick your start date!
                 <p>
                     <input class="datepicker">
-                <a href="">Go, pick up your perfect room!</a>
+                    <a href="">Go, pick up your perfect room!</a>
             </div>
 
         </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.datepicker').datepicker({
-                    autoclose: true
+        <tiles:putAttribute name="scripts">Index Page
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.datepicker').datepicker({
+                        autoclose: true
+                    });
                 });
-            });
-
-
-        </script>
-
-
+            </script>
+        </tiles:putAttribute>
     </tiles:putAttribute>
 </tiles:insertDefinition>
 
