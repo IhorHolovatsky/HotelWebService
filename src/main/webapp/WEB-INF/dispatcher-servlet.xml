@@ -15,9 +15,6 @@
     <mvc:annotation-driven/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!-- It works, all js and css files are in jar files, but Intellij Idea can't see it... Fucking Java... -->
-    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
-
     <mvc:resources mapping="/content/**" location="/resources/" />
     <context:component-scan base-package="com.hws.controllers,com.hws.DAO,com.hws.Services"/>
 
