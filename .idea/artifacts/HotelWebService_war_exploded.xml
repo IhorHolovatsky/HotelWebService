@@ -112,6 +112,7 @@
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.2.2" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.3" />
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.7.25" />
         </element>
       </element>
       <element id="directory" name="META-INF">
