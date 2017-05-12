@@ -60,7 +60,7 @@
     });
 </script>
 
-<!-- Render body -->
+<!-- Render Scripts -->
 <div>
     <tiles:insertAttribute name="scripts" />
 </div>
