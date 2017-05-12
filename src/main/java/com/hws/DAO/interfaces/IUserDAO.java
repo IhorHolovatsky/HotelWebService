@@ -9,6 +9,7 @@ import java.util.UUID;
 /**
  * Created by Ihor on 5/7/2017.
  */
+
 public interface IUserDAO {
     User GetUserByLogin(String login);
     void setSessionFactory(SessionFactory sessionFactory);

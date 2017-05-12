@@ -1,10 +1,13 @@
 package com.hws.DAO;
 
+import com.hws.DAO.interfaces.IRoomFacilityDAO;
+import com.hws.DAO.interfaces.IRoomTypeDAO;
 import com.hws.hibernate.models.RoomType;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,7 +16,9 @@ import java.util.UUID;
 /**
  * Created by Ihor on 4/16/2017.
  */
-public class RoomTypeDAO {
+
+@Service
+public class RoomTypeDAO implements IRoomTypeDAO {
     @Autowired
     private SessionFactory sessionFactory;
 

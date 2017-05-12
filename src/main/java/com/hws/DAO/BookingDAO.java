@@ -1,10 +1,12 @@
 package com.hws.DAO;
 
+import com.hws.DAO.interfaces.IBookingDAO;
 import com.hws.hibernate.models.Booking;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.UUID;
 /**
  * Created by nazar on 4/16/2017.
  */
-public class BookingDAO {
+
+@Service
+public class BookingDAO implements IBookingDAO {
 
     @Autowired
     private SessionFactory sessionFactory;

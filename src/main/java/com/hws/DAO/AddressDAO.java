@@ -1,10 +1,12 @@
 package com.hws.DAO;
 
+import com.hws.DAO.interfaces.IAddressDAO;
 import com.hws.hibernate.models.Address;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.UUID;
 /**
  * Created by Ihor on 4/15/2017.
  */
-public class AddressDAO {
+
+@Service
+public class AddressDAO implements IAddressDAO {
 
     @Autowired
     private SessionFactory sessionFactory;

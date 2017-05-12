@@ -17,15 +17,12 @@ import java.util.UUID;
 /**
  * Created by Ihor on 4/16/2017.
  */
+
 @Service
 public class UserDAO implements IUserDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    public UserDAO(){
-        //sessionFactory = HibernateUtil.getSessionFactory();
-    }
 
     //NOTE this is a new method and has been added to make testing easier!
     public void setSessionFactory(SessionFactory sessionFactory) {
