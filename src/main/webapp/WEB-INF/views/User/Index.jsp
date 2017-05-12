@@ -4,9 +4,6 @@
 <tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">Login</tiles:putAttribute>
     <tiles:putAttribute name="body">
-
-        Hello ${UserName}!!!
-        <br/>
-        <a href="<c:url value="/logout" />">Logout</a>
+        Fuck you pidor!
     </tiles:putAttribute>
 </tiles:insertDefinition>
