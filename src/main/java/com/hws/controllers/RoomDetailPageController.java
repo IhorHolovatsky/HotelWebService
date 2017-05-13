@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,7 +37,7 @@ public class RoomDetailPageController extends ControllerBase {
     IRoomDetailService _roomDetailService;
 
     @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
-    public ModelAndView Index(String roomId){
+    public ModelAndView Index(String roomId,String startDateString, String endDateString){
         if (roomId == null){
             return new ModelAndView("redirect:/Rooms");
         }
@@ -50,12 +53,21 @@ public class RoomDetailPageController extends ControllerBase {
 
                 model.addObject("FacilitiesList",GetFacilitiesListFromRoomFacilities(currentRoom));
 
-//                BookingViewModel bookingViewModel = new BookingViewModel();
-//                bookingViewModel.Room = currentRoom;
-//                bookingViewModel.StartDate = startDate;
-//                bookingViewModel.EndDate = endDate;
-//
-//                model.addObject("BookingViewModel",bookingViewModel);
+
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+                try{
+                Date startDate = f.parse(startDateString);
+                Date endDate = f.parse(endDateString);
+                }
+                catch (ParseException ex){
+
+                }
+
+                String bookingDateString = "You booking room from " + startDateString + " to " + endDateString;
+
+                model.addObject("BookingTime",bookingDateString);
+
                 model.addObject("Room",currentRoom);
             }else{
                 model.addObject("IsSuccess",false);
