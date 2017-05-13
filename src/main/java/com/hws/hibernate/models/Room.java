@@ -33,7 +33,7 @@ public class Room {
     @Type(type = "uuid-char")
     private UUID HotelId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "HotelID", updatable = false, insertable = false)
     private Hotel Hotel;
 
@@ -50,7 +50,10 @@ public class Room {
     @Column(name = "Image")
     private byte[] Image;
 
-    @OneToOne
+    @Column(name = "Name")
+    private String Name;
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RoomTypeID", updatable = false, insertable = false)
     private RoomType RoomType;
 
