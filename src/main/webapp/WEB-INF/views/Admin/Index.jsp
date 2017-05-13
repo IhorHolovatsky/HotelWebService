@@ -12,16 +12,151 @@
 <tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">My Profile</tiles:putAttribute>
     <tiles:putAttribute name="body">
-        <div class="col-md-4 profile-block">
-        <h2>All Rooms</h2>
-        <br/>
-        <form action="/Secured/Admin/Index/" method="post">
-            <div class="form-group">
-                <div class="col-10">
-                    <input class="form-control" type="text" value="${allRooms[0].name}" id="firstName">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-6 col-sm-3 col-md-6 flex-first">
+                    <h2>All Rooms</h2>
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Floor</th>
+                                <th>Number</th>
+                                <th>Price</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <c:forEach items="${allRooms}" var="rooms">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <c:out value="${rooms.roomId}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${rooms.floor}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${rooms.number}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${rooms.price}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${rooms.name}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${rooms.roomType.roomType}" />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-warning .btn-sm" data-toggle="confirmation">
+                                            <div id="edit" class="glyphicon glyphicon-pencil"></div>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger .btn-sm" data-toggle="confirmation">
+                                            <div id="delete" class="glyphicon glyphicon-remove-circle"></div>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <tbody>
+                        </c:forEach>
+                    </table>
+                </div>
+                <div class="col-6 col-sm-3 col-md-6 flex-last">
+                    <h2>Database Rooms</h2>
+                    <div class="form-group">
+                        <label for="roomID">RoomID</label>
+                        <input type="text" class="form-control" id="roomID">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotelID">HotelID</label>
+                        <input type="text" class="form-control" id="hotelID">
+                    </div>
+                    <div class="form-group">
+                        <label for="roomTypeID">RoomTypeID</label>
+                        <input type="text" class="form-control" id="roomTypeID">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <label for="name">Name</label>
+                            <input class="form-control" id="name" type="text">
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="price">Price</label>
+                            <input class="form-control" id="price" type="text">
+                        </div>
+                        <div class="col-xs-2">
+                            <label for="number">Number</label>
+                            <input class="form-control" id="number" type="text">
+                        </div>
+                        <div class="col-xs-2">
+                            <label for="floor">Floor</label>
+                            <input class="form-control" id="floor" type="text">
+                        </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button class="btn btn-success btn-lg btn-block" data-toggle="confirmation">
+                                <div id="addRoom" class="glyphicon glyphicon-plus"></div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </form>
 
+            <div class="row align-items-center">
+                <div class="col-6 col-sm-3 col-md-6 flex-last">
+                    <h2>All Bookings</h2>
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer name</th>
+                            <th>DateTimeMade</th>
+                            <th>Booking comment</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <c:forEach items="${allBookings}" var="booking">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <c:out value="${booking.roomId}" />
+                            </td>
+                            <td>
+                                <c:out value="${booking.floor}" />
+                            </td>
+                            <td>
+                                <c:out value="${booking.number}" />
+                            </td>
+                            <td>
+                                <c:out value="${booking.price}" />
+                            </td>
+                            <td>
+                                <button class="btn .btn-warning .btn-sm" data-toggle="confirmation">
+                                    <div id="edit1" class="glyphicon glyphicon-pencil"></div>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn .btn-danger .btn-sm" data-toggle="confirmation">
+                                    <div id="delete1" class="glyphicon glyphicon-remove-circle"></div>
+                                </button>
+                            </td>
+                        </tr>
+                        <tbody>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
+        </div>
     </tiles:putAttribute>
 </tiles:insertDefinition>
