@@ -94,6 +94,12 @@
     border-right-style: inset;
 }
 
+.bottom-line {
+    border-bottom-width: 2px;
+    border-bottom-color: #2aabd2;
+    border-bottom-style: inset;
+}
+
 body {
     background-color: #fcfcfc !important;
 }
