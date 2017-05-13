@@ -28,8 +28,13 @@
                             <div class="product-price">$ ${Room.price}</div>
 
                             <hr>
+                            <div class="product-price">
+                                ${BookingTime}
+                            </div>
+                            <hr>
+
                             <div class="btn-group cart">
-                                <button type="button" class="btn btn-success">
+                                <button type="button" class="btn btn-primary pull-right">
                                     Booking
                                 </button>
                             </div>
