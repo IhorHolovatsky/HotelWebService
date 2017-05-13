@@ -8,7 +8,6 @@
             <div class="col-md-4 profile-block">
                 <h2>Your Profile</h2>
                 <br/>
-
                 <div class="${errorMessage != null ? 'has-error' : ''}">
                     <form action="/Secured/User/Profile" method="post">
                         <input type="hidden" name="UserId" value="${userProfile.userId}">
