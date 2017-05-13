@@ -44,7 +44,8 @@ public class RoomDAO implements IRoomDAO {
         room.setRoomId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (Room) session.save(room);
+        session.save(room);
+        return room;
     }
 
     @Transactional

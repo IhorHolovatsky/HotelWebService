@@ -1,6 +1,7 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ public class Room {
 
     @Id
     @Column(name = "RoomID")
+    @Type(type = "uuid-char")
     private UUID RoomId;
 
     @Column(name = "Floor")
@@ -28,7 +30,8 @@ public class Room {
     private int Number;
 
     @Column(name = "HotelID")
-    private int HotelId;
+    @Type(type = "uuid-char")
+    private UUID HotelId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "HotelID", updatable = false, insertable = false)
@@ -41,9 +44,14 @@ public class Room {
     private String AdditionalNotes;
 
     @Column(name = "RoomTypeID")
-    private UUID RoomTypeId;
+    @Type(type = "uuid-char")
+    private UUID RoomTypeID;
+
+    @Column(name = "Image")
+    private byte[] Image;
 
     @OneToOne
+    @JoinColumn(name = "RoomTypeID", updatable = false, insertable = false)
     private RoomType RoomType;
 
     @OneToMany(mappedBy = "Room")

@@ -1,6 +1,7 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,12 +17,15 @@ public class Hotel {
 
     @Id
     @Column(name = "HotelID")
+    @Type(type = "uuid-char")
     private UUID HotelId;
 
     @Column(name = "AddressID")
+    @Type(type = "uuid-char")
     private UUID AddressId;
 
     @OneToOne
+    @JoinColumn(name = "AddressID", updatable = false, insertable = false)
     private Address Address;
 
     @Column(name = "Description")

@@ -26,7 +26,7 @@
             </div>
 
         </div>
-        <tiles:putAttribute name="scripts">Index Page
+        <tiles:putAttribute name="scripts">
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.datepicker').datepicker({
