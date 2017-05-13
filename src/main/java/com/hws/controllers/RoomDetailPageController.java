@@ -5,7 +5,9 @@ import com.hws.Services.security.interfaces.IRoomDetailService;
 import com.hws.Services.security.interfaces.IRoomDetailService;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
+import com.hws.hibernate.models.RoomFacility;
 import com.hws.hibernate.models.TestConnection;
+import com.microsoft.windowsazure.core.utils.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -29,7 +33,9 @@ public class RoomDetailPageController extends ControllerBase {
     IRoomDetailService _roomDetailService;
 
     @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
-    public String Index(){
+    public ModelAndView Index(){
+
+        ModelAndView model = new ModelAndView("RoomDetailPage/Index");
 
         String roomIdString = context.getParameter("roomId");
         UUID roomId = UUID.fromString(roomIdString);
@@ -37,10 +43,30 @@ public class RoomDetailPageController extends ControllerBase {
         ResponseWrapper<Room> responseWrapper = _roomDetailService.GetCurrentRoom(roomId);
         if(responseWrapper.getIsSuccess()){
             Room currentRoom = responseWrapper.ResponseData;
-        }else{
 
+            if(currentRoom != null){
+                model.addObject("IsSuccess",true);
+
+                model.addObject("FacilitiesList",GetFacilitiesListFromRoomFacilities(currentRoom));
+                model.addObject("Room",currentRoom);
+            }else{
+                model.addObject("IsSuccess",false);
+            }
+
+
+         }else{
+            model.addObject("IsSuccess",false);
         }
 
-        return "RoomDetailPage/Index";
+        return model;
+    }
+    
+    private List<String> GetFacilitiesListFromRoomFacilities(Room room){
+        List<String> result = new ArrayList<String>();
+        for (RoomFacility roomFacility: room.getRoomFacility()
+        ){
+            result.add(roomFacility.getFacility().getName());
+        }
+        return result;
     }
 }
