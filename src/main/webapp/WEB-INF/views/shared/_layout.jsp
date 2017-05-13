@@ -16,6 +16,8 @@
     <link href="${pageContext.servletContext.contextPath}/content/css/Site.css" rel="stylesheet"></link>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap.css" rel='stylesheet'>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap-theme.css" rel='stylesheet'>
+    <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap-datepicker.css" rel='stylesheet'>
+
     <tiles:insertAttribute name="styles" />
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/jquery.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/bootstrap.js"></script>
@@ -23,7 +25,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" style="border-radius: 0;">
+<nav class="navbar navbar-default navbar-inverse" style="border-radius: 0;">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">HWS</a>
@@ -64,6 +66,13 @@
 <!-- Render Scripts -->
 <div>
     <tiles:insertAttribute name="scripts" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                autoclose: true
+            });
+        });
+    </script>
 </div>
 
 </body>
