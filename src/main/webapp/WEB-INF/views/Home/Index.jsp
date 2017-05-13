@@ -21,20 +21,16 @@
                 <p>
                     Pick your start date!
                 <p>
-                    <input class="datepicker">
-                    <a href="">Go, pick up your perfect room!</a>
+                <div class="input-group">
+                    <input class="form-control datepicker" type="text" id="startDate">
+                    <span class="input-group-addon"><span
+                            class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+
+                <a href="">Go, pick up your perfect room!</a>
             </div>
 
         </div>
-        <tiles:putAttribute name="scripts">
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('.datepicker').datepicker({
-                        autoclose: true
-                    });
-                });
-            </script>
-        </tiles:putAttribute>
     </tiles:putAttribute>
 </tiles:insertDefinition>
 

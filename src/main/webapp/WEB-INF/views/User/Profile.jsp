@@ -24,7 +24,12 @@
                     <div class="form-group">
                         <label for="dateOfBirth" class="col-2 col-form-label">Date Of Birth</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" value="${userProfile.customer.dateBirth}" id="dateOfBirth">
+                            <div class="input-group">
+                                <input class="form-control datepicker" type="text"
+                                       value="${userProfile.customer.dateBirth}" id="dateOfBirth">
+                                <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
