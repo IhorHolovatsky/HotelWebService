@@ -11,6 +11,7 @@
         <div class="container-fluid">
             <div class="content-wrapper">
                 <div class="item-container">
+                    <form method="POST" action="/RoomDetailPage/Booking">
                     <div class="container">
                         <div class="col-md-12">
 
@@ -34,13 +35,14 @@
                             <hr>
 
                             <div class="btn-group cart">
-                                <button type="button" class="btn btn-primary pull-right">
+                                <button type="submit" class="btn btn-primary pull-right">
                                     Booking
                                 </button>
                             </div>
 
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="container-fluid">
                     <div class="col-md-12 product-info">
@@ -74,10 +76,10 @@
             </div>
         </div>
 
-        <tiles:putAttribute name="scripts">
-            <script type="text/javascript">
+        <%--<tiles:putAttribute name="scripts">--%>
+            <%--<script type="text/javascript">--%>
 
-            </script>
-        </tiles:putAttribute>
+            <%--</script>--%>
+        <%--</tiles:putAttribute>--%>
     </tiles:putAttribute>
 </tiles:insertDefinition>
