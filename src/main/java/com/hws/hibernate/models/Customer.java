@@ -68,6 +68,10 @@ public class Customer {
 
     public String getFormattedDateBirth(){
         Date birthDate = getDateBirth();
+        
+        if (birthDate == null)
+            return "";
+
         return new SimpleDateFormat("dd/MM/yyyy").format(birthDate);
     }
 }

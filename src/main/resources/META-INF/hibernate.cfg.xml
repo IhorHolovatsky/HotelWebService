@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.SQLServerDialect
+        </property>
+        <property name="hibernate.connection.driver_class">
+            com.microsoft.sqlserver.jdbc.SQLServerDriver
+        </property>
+
+        <!-- Assume test is the database name -->
+        <property name="hibernate.connection.url">
+            jdbc:sqlserver://maindevhws.csfyzysrpwkq.us-west-2.rds.amazonaws.com:1433;databaseName=HWS
+        </property>
+        <property name="hibernate.connection.username">
+            hws_user
+        </property>
+        <property name="hibernate.connection.password">
+            1
+        </property>
+
+        <!-- List of XML mapping files -->
+        <mapping class="com.hws.hibernate.models.BookingRoom"/>
+        <mapping class="com.hws.hibernate.models.Booking"/>
+        <mapping class="com.hws.hibernate.models.Hotel"/>
+        <mapping class="com.hws.hibernate.models.Room"/>
+        <mapping class="com.hws.hibernate.models.RoomFacility"/>
+        <mapping class="com.hws.hibernate.models.Address"/>
+        <mapping class="com.hws.hibernate.models.Customer"/>
+        <mapping class="com.hws.hibernate.models.Facility"/>
+        <mapping class="com.hws.hibernate.models.User"/>
+        <mapping class="com.hws.hibernate.models.Role"/>
+        <mapping class="com.hws.hibernate.models.TestConnection"/>
+        <mapping class="com.hws.hibernate.models.Payment"/>
+        <mapping class="com.hws.hibernate.models.PaymentMethod"/>
+        <mapping class="com.hws.hibernate.models.Guest"/>
+    </session-factory>
+</hibernate-configuration>

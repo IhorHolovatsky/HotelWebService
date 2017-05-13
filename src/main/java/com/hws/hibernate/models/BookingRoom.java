@@ -2,6 +2,7 @@ package com.hws.hibernate.models;
 
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.awt.print.Book;
@@ -13,6 +14,7 @@ import java.util.UUID;
  */
 @Data
 @Entity
+@Component
 @Table(name = "BookingRoom",
        uniqueConstraints = {@UniqueConstraint(columnNames = "BookingRoomID")})
 public class BookingRoom {
@@ -38,6 +40,7 @@ public class BookingRoom {
     private UUID GuestId;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "GuestID", updatable = false, insertable = false)
     private Guest Guest;
 
     @Column(name = "StartDate")

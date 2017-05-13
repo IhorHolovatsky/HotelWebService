@@ -2,6 +2,7 @@ package com.hws.hibernate.models;
 
 import lombok.Data;
 import org.hibernate.annotations.Type;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
  */
 @Data
 @Entity
+@Component
 @Table(name ="Room")
 public class Room {
 
@@ -52,6 +54,9 @@ public class Room {
 
     @Column(name = "Name")
     private String Name;
+
+    @OneToMany(mappedBy = "Room",fetch = FetchType.EAGER)
+    private List<BookingRoom> RoomBookings;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RoomTypeID", updatable = false, insertable = false)
