@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+form {
+  max-width: 450px;
+  margin: 0 auto;
+}
+form > div {
+  position: relative;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+form > div > label {
+  opacity: 0.3;
+  font-weight: bold;
+  position: absolute;
+  top: 22px;
+  left: 20px;
+}
+form > div > input[type="text"],
+form > div > input[type="email"] {
+  width: 100%;
+  border: 0;
+  padding: 20px 20px 20px 50px;
+  background: #eee;
+}
+form > div > input[type="text"]:focus,
+form > div > input[type="email"]:focus {
+  outline: 0;
+  background: white;
+}
+form > div > input[type="text"]:focus + label,
+form > div > input[type="email"]:focus + label {
+  opacity: 0;
+}
+form > div > input[type="text"]:valid,
+form > div > input[type="email"]:valid {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+}
+form > div > input[type="text"]:valid + label,
+form > div > input[type="email"]:valid + label {
+  opacity: 0;
+}
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) {
+  background: pink;
+}
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label,
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) + label {
+  opacity: 0;
+}
+form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
+  max-height: 200px;
+  padding: 0 30px 20px 50px;
+}
+form > div .requirements {
+  padding: 0 30px 0 50px;
+  color: #999;
+  max-height: 0;
+  -webkit-transition: 0.28s;
+  transition: 0.28s;
+  overflow: hidden;
+  color: red;
+  font-style: italic;
+}
+form input[type="submit"] {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+  background: #41D873;
+  color: white;
+  border: 0;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}

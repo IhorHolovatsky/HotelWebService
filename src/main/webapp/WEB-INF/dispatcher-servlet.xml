@@ -36,7 +36,7 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-        <property name="url" value="jdbc:sqlserver://maindevhws.csfyzysrpwkq.us-west-2.rds.amazonaws.com:1433;databaseName=HWS" />
+            <property name="url" value="jdbc:sqlserver://maindevhws.csfyzysrpwkq.us-west-2.rds.amazonaws.com:1433;databaseName=HWS" />
         <property name="username" value="hws_user" />
         <property name="password" value="1" />
     </bean>
