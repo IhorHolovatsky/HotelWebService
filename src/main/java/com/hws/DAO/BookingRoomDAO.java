@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -65,4 +66,16 @@ public class BookingRoomDAO implements IBookingRoomDAO {
         Session session = sessionFactory.getCurrentSession();
         session.delete(bookingRoomToDelete);
     }
+
+    @Transactional
+    public List<BookingRoom> GetBookings(Date startDate, Date endDate){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select br from BookingRoom br " +
+                                             "where br.StartDate = :startDate and br.EndDate = :endDate");
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+
+        return query.list();
+    }
+
 }

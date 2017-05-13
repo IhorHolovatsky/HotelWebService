@@ -3,6 +3,7 @@ package com.hws.DAO.interfaces;
 import com.hws.hibernate.models.BookingRoom;
 import org.hibernate.SessionFactory;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,4 +18,5 @@ public interface IBookingRoomDAO {
     void UpdateBookingRoom(BookingRoom bookingRoom);
     void DeleteBookingRoomById(UUID bookingRoomId);
     void DeleteBookingRoom(BookingRoom bookingRoomToDelete);
+    List<BookingRoom> GetBookings(Date startDate, Date endDate);
 }
