@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,24 +34,14 @@ public class RoomDetailPageController extends ControllerBase {
     IRoomDetailService _roomDetailService;
 
     @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
-    public ModelAndView Index() throws ParseException {
-
+    public ModelAndView Index(String roomId){
+        if (roomId == null){
+            return new ModelAndView("redirect:/Rooms");
+        }
         ModelAndView model = new ModelAndView("RoomDetailPage/Index");
+        UUID roomUUID = UUID.fromString(roomId);
 
-        String roomIdString = context.getParameter("roomId");
-        String startDateString = context.getParameter("startDate");
-        String endDateString = context.getParameter("endDate");
-
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-
-        Date startDate = f.parse(startDateString);
-        Date endDate = f.parse(endDateString);
-
-        String bookingDateString = "You booking room from " + startDateString + " to " + endDateString;
-
-        UUID roomId = UUID.fromString(roomIdString);
-
-        ResponseWrapper<Room> responseWrapper = _roomDetailService.GetCurrentRoom(roomId);
+        ResponseWrapper<Room> responseWrapper = _roomDetailService.GetCurrentRoom(roomUUID);
         if(responseWrapper.getIsSuccess()){
             Room currentRoom = responseWrapper.ResponseData;
 
@@ -70,7 +57,6 @@ public class RoomDetailPageController extends ControllerBase {
 //
 //                model.addObject("BookingViewModel",bookingViewModel);
                 model.addObject("Room",currentRoom);
-                model.addObject("BookingTime",bookingDateString);
             }else{
                 model.addObject("IsSuccess",false);
             }

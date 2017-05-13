@@ -104,7 +104,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <button class="btn btn-success btn-lg btn-block" data-toggle="confirmation">
+                            <button class="btn btn-primary btn-lg btn-block" data-toggle="confirmation">
                                 <div id="addRoom" class="glyphicon glyphicon-plus"></div>
                             </button>
                         </div>

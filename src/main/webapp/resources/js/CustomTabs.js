@@ -10,4 +10,5 @@ function selectRoomType(evt, roomType) {
     }
 
     evt.currentTarget.className += " active";
+    selectedRoomType = evt.currentTarget.attributes["room-type-id"].value;
 }
