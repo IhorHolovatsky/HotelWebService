@@ -1,58 +1,28 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<tiles:insertDefinition name="defaultLayout">
-    <tiles:putAttribute name="title">Rooms</tiles:putAttribute>
-    <tiles:putAttribute name="styles">
-        <link href="${pageContext.servletContext.contextPath}/content/css/VerticalTabs.css" rel='stylesheet'>
-    </tiles:putAttribute>
-    <tiles:putAttribute name="scripts">
-        <script type='text/javascript'
-                src="${pageContext.servletContext.contextPath}/content/js/CustomTabs.js"></script>
-    </tiles:putAttribute>
-
-    <tiles:putAttribute name="body">
-        <div>
-            <div class="col-md-4 profile-block" style="width: 300px; height: 90%">
-                <div class="container-fluid">
-                    <h2>Room Types</h2>
-                    <br/>
-
-                    <div class="tab">
-                        <button class="tablinks active" onclick="selectRoomType(event)">All</button>
-                        <c:forEach var="roomType" items="${roomTypes}">
-                            <button class="tablinks" onclick="selectRoomType(event)">${roomType.roomType}</button>
-                        </c:forEach>
+    <c:choose>
+        <c:when test="${rooms.size() == 0}">
+            <h3>Sorry, No rooms available...</h3>
+        </c:when>
+        <c:otherwise>
+            <c:forEach var="room" items="${rooms}">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-4">
+                            Fucking Image
+                        </div>
+                        <div class="col-md-8">
+                            <div class="col-md-12">
+                                <h3><a href="/RoomDetailPage?roomId=${room.roomId}">${room.name}</a></h3>
+                            </div>
+                            <div class="col-md-12">
+                                <b>$ ${room.price}</b>
+                            </div>
+                            <div class="col-md-12">
+                                    ${room.additionalNotes}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <h2>Rooms</h2>
-                <br/>
-
-                <div class="container-fluid">
-                    <form id="searchFilters" class="form-inline">
-                        <label for="startDate">Start Date:</label>
-                        <div class="input-group" style="max-width: 250px">
-                            <input class="form-control datepicker" type="text" id="startDate">
-                            <span class="input-group-addon"><span
-                                    class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                        <label style="padding-left: 50px;" for="endDate">End Date:</label>
-                        <div class="input-group" style="max-width: 300px">
-                            <input class="form-control datepicker" type="text" id="endDate">
-                            <span class="input-group-addon"><span
-                                    class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                        <button class="btn btn-primary pull-right" type="button">Search</button>
-                    </form>
-
-                    <div class="panel panel-default">
-                        <div class="panel-body">Panel Content</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </tiles:putAttribute>
-</tiles:insertDefinition>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>

@@ -30,14 +30,14 @@ public class RoomDetailPageController extends ControllerBase {
     IRoomDetailService _roomDetailService;
 
     @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
-    public ModelAndView Index(){
-
+    public ModelAndView Index(String roomId){
+        if (roomId == null){
+            return new ModelAndView("redirect:/Rooms");
+        }
         ModelAndView model = new ModelAndView("RoomDetailPage/Index");
+        UUID roomUUID = UUID.fromString(roomId);
 
-        String roomIdString = context.getParameter("roomId");
-        UUID roomId = UUID.fromString(roomIdString);
-
-        ResponseWrapper<Room> responseWrapper = _roomDetailService.GetCurrentRoom(roomId);
+        ResponseWrapper<Room> responseWrapper = _roomDetailService.GetCurrentRoom(roomUUID);
         if(responseWrapper.getIsSuccess()){
             Room currentRoom = responseWrapper.ResponseData;
 

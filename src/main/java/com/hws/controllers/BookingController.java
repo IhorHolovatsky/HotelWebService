@@ -5,12 +5,17 @@ import com.hws.Services.nonsecurity.interfaces.IBookingService;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
 import com.hws.hibernate.models.RoomType;
+import com.hws.viewModels.SearchArgs;
+import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -24,12 +29,16 @@ public class BookingController extends ControllerBase {
     IBookingService bookingService;
     @Autowired
     IRoomTypeDAO roomTypeDAO;
+    SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @RequestMapping(value = "/Rooms", method = RequestMethod.GET)
     public ModelAndView Index(){
-        ModelAndView model = new ModelAndView("Bookings/Rooms");
+        ModelAndView model = new ModelAndView("Bookings/Index");
 
-        ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(new Date(), new Date());
+        Date startDate = new Date();
+        Date endDate = new Date();
+
+        ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(startDate, endDate);
         List<RoomType> roomTypes =  roomTypeDAO.GetAllRoomTypes();
 
         if (!result.IsSuccess)
@@ -37,7 +46,24 @@ public class BookingController extends ControllerBase {
 
         model.addObject("rooms", result.ResponseData);
         model.addObject("roomTypes", roomTypes);
+        model.addObject("startDate", dataFormat.format(startDate));
+        model.addObject("endDate", dataFormat.format(endDate));
+        return model;
+    }
 
+    @RequestMapping(value = "/SearchRooms", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView getAvailableRooms(@RequestBody SearchArgs searchArgs, BindingResult bindingResult, Model inputModel, HttpServletRequest servletRequest){
+
+        ModelAndView model = new ModelAndView("Bookings/Rooms");
+
+        ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(searchArgs.getStartDate(),
+                                                                               searchArgs.getEndDate(),
+                                                                               searchArgs.getRoomTypeUUID());
+
+        if (!result.IsSuccess)
+            return null;
+
+        model.addObject("rooms", result.ResponseData);
         return model;
     }
 }

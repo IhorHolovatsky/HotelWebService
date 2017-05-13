@@ -1,6 +1,7 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class RoomType {
     @Id
     @Column(name = "RoomTypeID")
+    @Type(type = "uuid-char")
     private UUID RoomTypeId;
 
     @Column(name = "RoomType")
