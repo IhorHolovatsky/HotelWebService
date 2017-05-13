@@ -26,13 +26,8 @@ public abstract class ControllerBase {
         return null;
     }
 
-    private User currentUser;
     protected User getUser(){
-        if (currentUser == null){
-            currentUser = userDAO.GetUserByLogin(getCurrentUserName());
-        }
-
-        return currentUser;
+       return userDAO.GetUserByLogin(getCurrentUserName());
     }
 
     protected String getCurrentUserName(){

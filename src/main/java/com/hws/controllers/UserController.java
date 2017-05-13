@@ -1,11 +1,13 @@
 package com.hws.controllers;
 
+import com.hws.Services.security.interfaces.IUserProfileService;
+import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.User;
-import org.springframework.security.access.annotation.Secured;
+import org.bouncycastle.math.raw.Mod;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController extends ControllerBase {
 
+    @Autowired
+    IUserProfileService userProfileService;
+
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/Secured/User/Index", method = RequestMethod.GET)
     public ModelAndView userHome() {
@@ -27,16 +32,29 @@ public class UserController extends ControllerBase {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/Secured/User/Profile", method = RequestMethod.GET)
-    public ModelAndView userProfile() {
+    public ModelAndView userProfile(User user, String errorMessage, String success) {
         ModelAndView model = new ModelAndView("User/Profile");
 
-        User currentUser = getUser();
+        User currentUser;
+        if (user == null || user.getUserId() == null) {
+            currentUser = getUser();
+        } else {
+            currentUser = user;
+        }
 
-        if (currentUser.getCustomer() == null){
+        if (currentUser.getCustomer() == null) {
             currentUser.setCustomer(new Customer());
         }
 
         model.addObject("userProfile", currentUser);
+
+        if (errorMessage != null){
+            model.addObject("errorMessage", errorMessage);
+        }
+        else if (success != null){
+            model.addObject("success", "Your changes was saved successfully!");
+        }
+
         return model;
     }
 
@@ -44,7 +62,15 @@ public class UserController extends ControllerBase {
     @RequestMapping(value = "/Secured/User/Profile", method = RequestMethod.POST)
     @ModelAttribute("com/hws/hibernate/models/User.java")
     public ModelAndView saveProfile(User userProfile) {
+        ResponseWrapper<User> response = userProfileService.UpdateUserProfile(userProfile);
 
-        return null;
+        if (response.IsSuccess) {
+            return new ModelAndView("redirect:/Secured/User/Profile?success=true");
+        }
+
+        ModelAndView model = new ModelAndView("User/Profile");
+        model.addObject("userProfile", response.ResponseData);
+        model.addObject("errorMessage", String.join("</br>", response.ErrorMessages));
+        return model;
     }
 }

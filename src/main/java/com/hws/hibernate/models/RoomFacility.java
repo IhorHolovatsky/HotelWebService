@@ -1,6 +1,7 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.springframework.jmx.export.annotation.ManagedNotification;
 
 import javax.persistence.*;
@@ -17,9 +18,11 @@ public class RoomFacility {
 
     @Id
     @Column(name = "RoomFacilityID")
+    @Type(type = "uuid-char")
     private UUID RoomFacilityId;
 
     @Column(name = "FacilityID")
+    @Type(type = "uuid-char")
     private UUID FacilityId;
 
     @ManyToOne
@@ -30,9 +33,10 @@ public class RoomFacility {
     private String FacilityDetails;
 
     @Column(name = "RoomID")
+    @Type(type = "uuid-char")
     private UUID RoomId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RoomID", updatable = false, insertable = false)
     private Room Room;
 
