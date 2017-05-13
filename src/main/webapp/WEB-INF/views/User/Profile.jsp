@@ -58,6 +58,7 @@
                         <div class="form-group">
                             <label class="col-2 col-form-label">
                                 <span>${errorMessage}</span>
+                                <span style="color:green">${success}</span>
                             </label>
                             <div class="col-10">
                                 <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
