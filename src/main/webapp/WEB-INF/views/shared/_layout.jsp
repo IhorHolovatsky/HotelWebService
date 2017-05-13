@@ -38,7 +38,7 @@
         <ul class="nav navbar-nav navbar-right">
         <c:choose>
             <c:when test="${pageContext.request.userPrincipal != null}">
-                <li><a href="#">Hello ${pageContext.request.userPrincipal.name}!</a></li>
+                <li><a href="<c:url value="/Secured/User/Profile" />">Hello ${pageContext.request.userPrincipal.name}!</a></li>
                 <li><a href="<c:url value="/logout" />"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </c:when>
             <c:otherwise>

@@ -32,7 +32,7 @@ public class UserController extends ControllerBase {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/Secured/User/Profile", method = RequestMethod.GET)
-    public ModelAndView userProfile(User user, String errorMessage) {
+    public ModelAndView userProfile(User user, String errorMessage, String success) {
         ModelAndView model = new ModelAndView("User/Profile");
 
         User currentUser;
@@ -51,6 +51,10 @@ public class UserController extends ControllerBase {
         if (errorMessage != null){
             model.addObject("errorMessage", errorMessage);
         }
+        else if (success != null){
+            model.addObject("success", "Your changes was saved successfully!");
+        }
+
         return model;
     }
 
@@ -61,7 +65,7 @@ public class UserController extends ControllerBase {
         ResponseWrapper<User> response = userProfileService.UpdateUserProfile(userProfile);
 
         if (response.IsSuccess) {
-            return new ModelAndView("redirect:/Secured/User/Profile");
+            return new ModelAndView("redirect:/Secured/User/Profile?success=true");
         }
 
         ModelAndView model = new ModelAndView("User/Profile");

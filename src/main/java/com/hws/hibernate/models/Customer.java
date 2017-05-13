@@ -29,7 +29,7 @@ public class Customer {
     @Column(name="LastName", length=20, nullable=false)
     private String LastName;
 
-    @Column(name="MiddleName", length=20, nullable=false)
+    @Column(name="MiddleName", length=20, nullable=false, updatable = false)
     private String MiddleName;
 
     @Column(name="DateBirth", length=20, nullable=false)
@@ -68,6 +68,6 @@ public class Customer {
 
     public String getFormattedDateBirth(){
         Date birthDate = getDateBirth();
-        return new SimpleDateFormat("dd/mm/yyyy").format(birthDate);
+        return new SimpleDateFormat("dd/MM/yyyy").format(birthDate);
     }
 }
