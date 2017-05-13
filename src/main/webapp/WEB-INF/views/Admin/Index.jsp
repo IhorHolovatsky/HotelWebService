@@ -11,59 +11,44 @@
 
 <tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">My Profile</tiles:putAttribute>
+    <tiles:putAttribute name="scripts">
+        <script>
+            $(document).ready(function(){
+
+                $("#addRoom").on('click', function(){
+
+                    var addArgs = {};
+                    addArgs.roomID = $("#roomID").val();
+                    addArgs.hotelID = $("#hotelID").val();
+                    addArgs.roomTypeID = $("#roomTypeID").val();
+                    addArgs.name = $("#name").val();
+                    addArgs.price = $("#price").val();
+                    addArgs.number = $("#number").val();
+                    addArgs.floor = $("#floor").val();
+
+
+                    <c:url var="addRoomUrl" value="/AddRoom"></c:url>
+                    $.ajax({
+                        url: '${addRoomUrl}',
+                        contentType: "application/json",
+                        dataType: "html",
+                        method: "POST",
+                        data: JSON.stringify(addArgs),
+                        success: function (data) {
+                            $("#roomsDb").html(data);
+                        }
+                    });
+                })
+            });
+        </script>
+    </tiles:putAttribute>
     <tiles:putAttribute name="body">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-6 col-sm-3 col-md-6 flex-first">
-                    <h2>All Rooms</h2>
-                    <table class="table table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Floor</th>
-                                <th>Number</th>
-                                <th>Price</th>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <c:forEach items="${allRooms}" var="rooms">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <c:out value="${rooms.roomId}" />
-                                    </td>
-                                    <td>
-                                        <c:out value="${rooms.floor}" />
-                                    </td>
-                                    <td>
-                                        <c:out value="${rooms.number}" />
-                                    </td>
-                                    <td>
-                                        <c:out value="${rooms.price}" />
-                                    </td>
-                                    <td>
-                                        <c:out value="${rooms.name}" />
-                                    </td>
-                                    <td>
-                                        <c:out value="${rooms.roomType.roomType}" />
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning .btn-sm" data-toggle="confirmation">
-                                            <div id="edit" class="glyphicon glyphicon-pencil"></div>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger .btn-sm" data-toggle="confirmation">
-                                            <div id="delete" class="glyphicon glyphicon-remove-circle"></div>
-                                        </button>
-                                    </td>
-                                </tr>
-                            <tbody>
-                        </c:forEach>
-                    </table>
+                    <div id="roomsDb" style="padding-top: 30px;">
+                        <jsp:include page="RoomsDB.jsp"/>
+                    </div>
                 </div>
                 <div class="col-6 col-sm-3 col-md-6 flex-last">
                     <h2>Database Rooms</h2>
@@ -104,8 +89,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <button class="btn btn-primary btn-lg btn-block" data-toggle="confirmation">
-                                <div id="addRoom" class="glyphicon glyphicon-plus"></div>
+                            <button id="addRoom" class="btn btn-primary btn-lg btn-block" data-toggle="confirmation">
+                                <div class="glyphicon glyphicon-plus"></div>
                             </button>
                         </div>
                     </div>
