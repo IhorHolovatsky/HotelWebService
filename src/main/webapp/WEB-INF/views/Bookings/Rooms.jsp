@@ -20,6 +20,11 @@
                         <div class="col-md-12">
                                 ${room.additionalNotes}
                         </div>
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-info bookRoom"
+                               style="margin-top:20px;"
+                               data-room-id="${room.roomId}">Book It</a>
+                        </div>
                     </div>
                 </div>
             </div>

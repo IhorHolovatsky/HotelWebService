@@ -1,213 +1,59 @@
-﻿function outputValidationMessage(fieldId, messagetext) {
-    var actualContent = $("#validationResult_" + fieldId).html();
-    var contentToShow = messagetext;
+﻿$(document).ready(function () {
+    $("body").append("<div id='overlay'></div>" +
+                     "<div id='waitSpinner'></div>");
 
-    if (actualContent) {
-        contentToShow += '<br/>' + actualContent;
-    } else {
-        $("#validationResult_" + fieldId).addClass("help-block");
-    }
 
-    $("#validationResult_" + fieldId).html(contentToShow);
-    $("#validationResult_" + fieldId).show();
-}
+    $('#waitSpinner').hide();
+    $('#overlay').hide();
 
-function hideValidationMessage(fieldId) {
-    $("#validationResult_" + fieldId).removeClass("help-block");
-    $("#validationResult_" + fieldId).html("");
-    $("#validationResult_" + fieldId).hide();
-}
+    var opts = {
+        lines: 13, // The number of lines to draw
+        length: 3, // The length of each line
+        width: 10, // The line thickness
+        radius: 30, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 0, // The rotation offset
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#333333', // #rgb or #rrggbb or array of colors
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spinner', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: '50%', // Top position relative to parent
+        left: '50%' // Left position relative to parent
+    };
 
-function clearValidationMessages() {
-    $(".field-validation-valid").removeClass("help-block");
-    $(".field-validation-valid").html("");
-    $(".field-validation-valid").hide();
-}
-//Image upload
-function fileInput_loadImageThumbnail(fileInputValue, previewImgId, $dependedElements) {
-    if (!fileInputValue && !fileInputValue.files && !fileInputValue.files[0]) {
-        console.error("Invalid argument value!");
-        return;
-    }
+    var spinner = new Spinner(opts);
+    spinner.spin();
+    $('#waitSpinner').html(spinner.el);
+});
 
-    var isIE = (navigator.appName == "Microsoft Internet Explorer");
-    var path = fileInputValue.value;
-    var ext = path.substring(path.lastIndexOf(".") + 1).toLowerCase();
-
-    if (jQuery.inArray(ext, ["gif", "png", "jpg", "jpeg"]) !== -1 || /^image/.test(fileInputValue.files[0].type)) {
-        if (isIE) {
-            $("#" + previewImgId).attr("src", path);
-            if ($dependedElements)
-            {
-                $dependedElements.each(function (index, element) {
-                    $(element).attr('src', path);
-                });
-            }
-        } else {
-            if (fileInputValue.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#" + previewImgId).attr("src", e.target.result);
-                    if ($dependedElements)
-                    {
-                        $dependedElements.each(function (index, element) {
-                            $(element).attr('src', e.target.result);
-                        });
-                    }
-                };
-                reader.readAsDataURL(fileInputValue.files[0]);
-                return true;
-            }
+$(document).on({
+    ajaxStart: function () {
+        startSpinner();
+    },
+    ajaxSuccess: function () {
+        if ($.active < 2) {
+            stopSpinner();
         }
-        return true;
-    } else {
-        $("#" + previewImgId).attr("src", '');
-        return false;
-    }
-}
-
-// non-image file upload
-function fileInput_loadFileContent(fileInputValue, storageId) {
-    if (!fileInputValue && !fileInputValue.files && !fileInputValue.files[0]) {
-        console.error("Invalid argument value!");
-        return;
-    }
-
-    if (fileInputValue.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $("#" + storageId).attr("value", e.target.result);
-        };
-        reader.readAsDataURL(fileInputValue.files[0]);
-        
-    }
-
-    return true;
-    
-}
-
-
-// format Error Message
-function formatErrorMessage(jqXhr, exception) {
-
-    var message = "";
-    if (jqXhr.status === 0) {
-        message = "Not connect.\n Verify Network.";
-    } else if (jqXhr.status == 404) {
-        message = "Requested page not found.";
-    } else if (jqXhr.status == 500) {
-        message = "Internal Server Error.";
-    } else if (exception === "parsererror") {
-        message = "Requested JSON parse failed.";
-    } else if (exception === "timeout") {
-        message = "Time out error.";
-    } else if (exception === "abort") {
-        message = "Ajax request aborted.";
-    } else {
-        message = "Uncaught Error.\n" + jqXhr.responseText;
-    }
-    return message;
-}
-
-/// Errors the message alert.
-function errorMessageAlert(jqXhr, exception) {
-
-    var msg = formatErrorMessage(jqXhr, exception);
-
-    alert(msg);
-}
-
-/// Errors the message modal.
-function errorMessageModal(jqXhr, exception) {
-
-    var msg = formatErrorMessage(jqXhr, exception);
-
-    alertModal("Something went wrong...", msg);
-}
-
-
-// Display error message to the user in a modal
-function alertModal(title, body) {
-    $("#alert-modal-title").html(title);
-    $("#alert-modal-body").html(body);
-    $("#alert-modal").modal("show");
-}
-
-// Scrolls to anchor.
-function scrollToAnchor(id) {
-    
-    var tag = $("#" + id );
-     
-    if (tag.length) {
-  
-        $('html, body').animate({
-            scrollTop: tag.offset().top - 50
-        }, 1000);
-
-    }
-}
-
-// escape Html tags to avoid "Potentially dangerous request" error if some Html tag is entered
-function escapeHtmlTags(formId) {
-    var input = $("#" + formId).find("input[type=text], textarea");
-    input.each(function (index, field) {
-        var value = $(field).val();
-        value = escapeHtmlTagsFromText(value);
-        $(field).val(value);
-    });
-}
-
-function escapeHtmlTagsFromText(text) {
-    text = text.replace(/</g, "&lt;");
-    text = text.replace(/>/g, "&gt;");
-    return text;
-}
-
-// unsecape Html tags to display values as entered in case of error
-function unescapeHtmlTags(formId) {
-    var input = $("#" + formId).find("input[type=text], textarea");
-    input.each(function (index, field) {
-        var value = $(field).val();
-        value = unescapeHtmlTagsFromText(value);
-        $(field).val(value);
-    });
-}
-
-function unescapeHtmlTagsFromText(text) {
-    text = text.replace(/&lt;/g, "<");
-    text = text.replace(/&gt;/g, ">");
-    return text;
-}
-
-function startTimer(durationSeconds, targetId, callback, callbackParams) {
-    var timer = durationSeconds, seconds;
-
-    var refreshIntervalId = setInterval(function () {
-
-        seconds = parseInt(timer % 60, 10);
-        //uncomment if you have minutes
-        //seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        $('#' + targetId).text(seconds);
-
-        if (--timer < 0) {
-            if (callback && typeof callback === "function") {
-                callback(callbackParams);
-            }
-
-            clearInterval(refreshIntervalId);
+    },
+    ajaxError: function () {
+        if ($.active < 2) {
+            stopSpinner();
         }
-    }, 1000);
+    }
+});
 
-    return refreshIntervalId;
+// when an ajax request starts, show spinner
+function startSpinner() {
+    $('#waitSpinner').show();
+    $('#overlay').show();
 }
 
-function generateRandomGuid() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
+// when an ajax request complets, hide spinner
+function stopSpinner() {
+    $('#waitSpinner').hide();
+    $('#overlay').hide();
 }
