@@ -31,6 +31,17 @@
                         }
                     });
                 })
+
+                $(".bookRoom").on('click', function(e){
+                    var bookUrl = '<c:url value="/RoomDetailPage" />';
+                    var roomId = e.target.attributes["data-room-id"].value;
+                    var startDate = $("#startDate").val();
+                    var endDate = $("#endDate").val();
+
+                    window.location.href = bookUrl + "/?roomId=" + roomId +
+                        "&startDate=" + startDate +
+                        "&endDate=" + endDate;
+                });
             });
         </script>
     </tiles:putAttribute>
