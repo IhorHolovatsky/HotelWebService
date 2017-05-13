@@ -2,7 +2,7 @@ package com.hws.controllers;
 
 import com.hws.DAO.RoomDAO;
 import com.hws.DAO.interfaces.IRoomDAO;
-import com.hws.Services.security.interfaces.IRoomDetailService;
+import com.hws.Services.nonsecurity.interfaces.IRoomDetailService;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
