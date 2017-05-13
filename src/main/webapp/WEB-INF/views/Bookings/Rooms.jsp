@@ -8,7 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="col-md-3">
-                            Fucking Image
+                            <img src="/GetImage?roomId=${room.roomId}">
                         </div>
                         <div class="col-md-7">
                             <div class="col-md-12">

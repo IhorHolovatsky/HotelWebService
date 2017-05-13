@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -54,7 +55,7 @@ public class Room {
     @Type(type = "uuid-char")
     private UUID RoomTypeID;
 
-    @Column(name = "Image")
+    @Column(name = "Image", columnDefinition="varbinary(max)")
     private byte[] Image;
 
     @Column(name = "Name")
@@ -85,5 +86,13 @@ public class Room {
     public Room(int floor, int number) {
         Floor = floor;
         Number = number;
+    }
+
+    public String getImageBase64(){
+        if (Image == null)
+            return "";
+
+        String image = Base64.getEncoder().encodeToString(Image);
+        return image;
     }
 }

@@ -36,7 +36,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="#">Rooms</a></li>
+            <li><a href="<c:url value="/Rooms" />">Rooms</a></li>
             <li><a href="<c:url value="/Contact" />">Contact Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
