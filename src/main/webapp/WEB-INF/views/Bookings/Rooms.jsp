@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <a href="#" class="btn btn-default bookRoom"
+                            <a href="#" class="btn btn-info bookRoom"
                                style="margin-top:20px;"
                                data-room-id="${room.roomId}">Book It</a>
                         </div>
