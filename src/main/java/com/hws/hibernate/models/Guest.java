@@ -1,6 +1,7 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,12 +18,15 @@ public class Guest {
 
     @Id
     @Column(name = "GuestID")
+    @Type(type = "uuid-char")
     private UUID GuestId;
 
     @Column(name = "AddressID")
+    @Type(type = "uuid-char")
     private UUID AddressId;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "AddressID", insertable = false, updatable = false)
     private Address Addresses;
 
     @Column(name = "DateBirth")

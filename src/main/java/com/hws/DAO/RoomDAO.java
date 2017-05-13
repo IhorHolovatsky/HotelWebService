@@ -1,6 +1,7 @@
 package com.hws.DAO;
 
 import com.hws.DAO.interfaces.IRoomDAO;
+import com.hws.hibernate.models.BookingRoom;
 import com.hws.hibernate.models.Room;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -64,5 +66,16 @@ public class RoomDAO implements IRoomDAO {
     public void DeleteRoom(Room roomToDelete){
         Session session = sessionFactory.getCurrentSession();
         session.delete(roomToDelete);
+    }
+
+    @Transactional
+    public List<Room> GetAvailableRooms(Date startDate, Date endDate){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select r from Room as r left join r.RoomBookings br where (br.StartDate not between :startDate and :endDate) and (br.EndDate not between :startDate and :endDate) or br.StartDate is null");
+
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+
+        return query.list();
     }
 }
