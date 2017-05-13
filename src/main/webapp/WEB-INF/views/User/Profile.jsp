@@ -8,19 +8,7 @@
             <div class="col-md-4 profile-block">
                 <h2>Your Profile</h2>
                 <br/>
-<<<<<<< HEAD
-                <form action="/Secured/User/Profile" method="post">
-                    <div class="form-group">
-                    <label for="firstName" class="col-2 col-form-label">First Name</label>
-                    <div class="col-10">
-                        <input class="form-control" type="text" value="${userProfile.customer.firstName}" id="firstName">
-                    </div>
-                </div>
-                    <div class="form-group">
-                        <label for="lastName" class="col-2 col-form-label">Last Name</label>
-                        <div class="col-10">
-                            <input id="lastName" class="form-control" type="text" value="${userProfile.customer.lastName}">
-=======
+
                 <div class="${errorMessage != null ? 'has-error' : ''}">
                     <form action="/Secured/User/Profile" method="post">
                         <input type="hidden" name="UserId" value="${userProfile.userId}">
@@ -32,7 +20,6 @@
                                 <input name="Customer.FirstName" class="form-control" type="text"
                                        value="${userProfile.customer.firstName}" id="firstName"/>
                             </div>
->>>>>>> origin/master
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="col-2 col-form-label">Last Name</label>
