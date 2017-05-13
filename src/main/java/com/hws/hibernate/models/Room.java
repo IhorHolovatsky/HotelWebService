@@ -33,7 +33,7 @@ public class Room {
     @Type(type = "uuid-char")
     private UUID HotelId;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "HotelID", updatable = false, insertable = false)
     private Hotel Hotel;
 
@@ -57,7 +57,7 @@ public class Room {
     @JoinColumn(name = "RoomTypeID", updatable = false, insertable = false)
     private RoomType RoomType;
 
-    @OneToMany(mappedBy = "Room")
+    @OneToMany(mappedBy = "Room", fetch = FetchType.EAGER)
     private List<RoomFacility> RoomFacility;
 
     public List<Facility> getFacilities(){
