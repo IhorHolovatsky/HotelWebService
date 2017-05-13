@@ -26,6 +26,9 @@ public class RoomDAOTest {
     private Session _session;
     private Query _query;
     private RoomDAO _roomDAO;
+    UUID RoomId = UUID.randomUUID();
+    UUID HotelId = UUID.randomUUID();
+    UUID RoomTypeId = UUID.randomUUID();
 
     @Before
     public void setUp() {
@@ -52,7 +55,7 @@ public class RoomDAOTest {
         String query = "select f from Room f";
 
         List<Room> expectedRoomList = new ArrayList<>();
-        expectedRoomList.add(new Room(5,520));
+        expectedRoomList.add(new Room(RoomId, HotelId, RoomTypeId, ));
         expectedRoomList.add(new Room(2,210));
 
         when(_session.createQuery(query)).thenReturn(_query);
