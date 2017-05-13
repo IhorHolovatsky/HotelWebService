@@ -71,9 +71,9 @@ public class RoomDAO implements IRoomDAO {
     @Transactional
     public List<Room> GetAvailableRooms(Date startDate, Date endDate){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select br from Room r " +
+        Query query = session.createQuery("select r from Room r " +
                                              "INNER join BookingRoom br" +
-                                             " br.StartDate = :startDate and br.EndDate = :endDate");
+                                             "br.StartDate >= :startDate and br.EndDate <= :endDate");
         query.setParameter("startDate", startDate);
         query.setParameter("endDate", endDate);
 

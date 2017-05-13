@@ -1,4 +1,4 @@
-package com.hws.Services.security.interfaces;
+package com.hws.Services.nonsecurity.interfaces;
 
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;

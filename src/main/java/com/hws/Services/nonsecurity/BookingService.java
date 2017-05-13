@@ -1,20 +1,20 @@
-package com.hws.Services.security;
+package com.hws.Services.nonsecurity;
 
 import com.hws.DAO.interfaces.IBookingRoomDAO;
 import com.hws.DAO.interfaces.IRoomDAO;
-import com.hws.Services.security.interfaces.IBookingService;
+import com.hws.Services.nonsecurity.interfaces.IBookingService;
 import com.hws.SharedEntities.ResponseWrapper;
-import com.hws.hibernate.models.BookingRoom;
 import com.hws.hibernate.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Ihor on 5/13/2017.
  */
+@Service
 public class BookingService implements IBookingService {
     @Autowired
     IBookingRoomDAO bookingRoomDAO;

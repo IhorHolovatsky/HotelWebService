@@ -15,6 +15,7 @@ import java.util.*;
 @Controller
 public class HomeController extends ControllerBase{
 
+
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String Index(){
         return "Home/Index";
