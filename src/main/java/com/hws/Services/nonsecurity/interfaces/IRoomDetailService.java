@@ -13,4 +13,5 @@ import java.util.UUID;
 public interface IRoomDetailService {
     ResponseWrapper<Room> GetCurrentRoom(UUID roomId);
     ResponseWrapper<List<Room>> GetAllRooms();
+    ResponseWrapper<Room> AddNewRoom(Room room);
 }

@@ -59,4 +59,23 @@ public class RoomDetailService implements IRoomDetailService {
         }
     }
 
+    @Override
+    public ResponseWrapper<Room> AddNewRoom(Room room) {
+        ResponseWrapper<Room> result = new ResponseWrapper<Room>();
+
+        try {
+            Room currentRoom = _roomDao.AddNewRoom(room);
+
+            result.ResponseData = currentRoom;
+            result.setIsSuccess(true);
+
+        }
+        catch (Exception ex){
+            result.setIsSuccess(false);
+        }
+        finally {
+            return result;
+        }
+    }
+
 }
