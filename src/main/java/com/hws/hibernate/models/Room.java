@@ -83,9 +83,15 @@ public class Room {
 
     public Room () {}
 
-    public Room(int floor, int number) {
-        Floor = floor;
+    public Room(UUID roomId, UUID hotelId, UUID roomTypeId, String name, BigDecimal price, Integer number, int floor, String comment) {
+        RoomId = roomId;
+        HotelId = hotelId;
+        RoomTypeID = roomTypeId;
+        Name = name;
+        Price = price;
         Number = number;
+        Floor = floor;
+        AdditionalNotes = comment;
     }
 
     public String getImageBase64(){

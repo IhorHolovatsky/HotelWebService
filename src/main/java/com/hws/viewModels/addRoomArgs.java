@@ -1,5 +1,6 @@
 package com.hws.viewModels;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
@@ -10,7 +11,7 @@ public class addRoomArgs {
     public String HotelId;
     public String RoomTypeId;
     public String Name;
-    public Integer Price;
+    public BigDecimal Price;
     public Integer Number;
     public Integer Floor;
     public String Comment;
@@ -43,7 +44,7 @@ public class addRoomArgs {
         return Name;
     }
 
-    public Integer getPrice(){
+    public BigDecimal getPrice(){
         if (Price == null)
             return null;
 

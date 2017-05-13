@@ -47,13 +47,15 @@ public class AdminController extends ControllerBase {
     public @ResponseBody ModelAndView addRoom(@RequestBody addRoomArgs addArgs,
                                                         HttpServletRequest servletRequest){
         ModelAndView model = new ModelAndView("Admin/Index");
+        Room room = new Room(addArgs.getRoomUUID(), addArgs.getHotelUUID(), addArgs.getRoomTypeUUID(), addArgs.Name
+                ,addArgs.Price, addArgs.Number, addArgs.Floor, addArgs.Comment);
 
-        ResponseWrapper<Room> result = _roomDetailService.AddNewRoom();
+        ResponseWrapper<Room> result = _roomDetailService.AddNewRoom(room);
 
         if (!result.IsSuccess)
             return null;
 
-        model.addObject("rooms", result.ResponseData);
+        model.addObject("newRoom", result.ResponseData);
         return model;
     }
 

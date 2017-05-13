@@ -22,7 +22,7 @@
                     addArgs.hotelID = $("#hotelID").val();
                     addArgs.roomTypeID = $("#roomTypeID").val();
                     addArgs.name = $("#name").val();
-                    addArgs.price = $("#price").val();
+                    addArgs.price = parseFloat($('#price').val()).toFixed(2);
                     addArgs.number = $("#number").val();
                     addArgs.floor = $("#floor").val();
 
@@ -45,12 +45,13 @@
     <tiles:putAttribute name="body">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-6 col-sm-3 col-md-6 flex-first">
-                    <div id="roomsDb" style="padding-top: 30px;">
+                <div class="col-6 col-sm-6 col-md-6 flex-first">
+                    <h2>All Rooms</h2>
+                    <div id="roomsDb">
                         <jsp:include page="RoomsDb.jsp"/>
                     </div>
                 </div>
-                <div class="col-6 col-sm-3 col-md-6 flex-last">
+                <div class="col-6 col-sm-6 col-md-6 flex-last">
                     <h2>Database Rooms</h2>
                     <div class="form-group">
                         <label for="roomID">RoomID</label>
@@ -81,17 +82,18 @@
                             <label for="floor">Floor</label>
                             <input class="form-control" id="floor" type="text">
                         </div>
-                    <div class="form-group row">
-                        <div class="col-xs-12">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" rows="4" id="comment"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <button id="addRoom" class="btn btn-primary btn-lg btn-block" data-toggle="confirmation">
-                                <div class="glyphicon glyphicon-plus"></div>
-                            </button>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button id="addRoom" class="btn btn-primary btn-lg btn-block" data-toggle="confirmation">
+                                    <div class="glyphicon glyphicon-plus"></div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

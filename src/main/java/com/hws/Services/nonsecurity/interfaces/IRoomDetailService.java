@@ -3,6 +3,7 @@ package com.hws.Services.nonsecurity.interfaces;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
 import com.hws.hibernate.models.User;
+import com.hws.viewModels.addRoomArgs;
 
 import java.util.List;
 import java.util.UUID;

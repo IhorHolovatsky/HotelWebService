@@ -4,6 +4,8 @@ import com.hws.DAO.interfaces.IRoomDAO;
 import com.hws.Services.nonsecurity.interfaces.IRoomDetailService;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
+import com.hws.viewModels.SearchArgs;
+import com.hws.viewModels.addRoomArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,12 +49,14 @@ public class RoomDetailService implements IRoomDetailService {
         try {
             List<Room> roomList = _roomDao.GetAllRooms();
 
+            result.IsSuccess = true;
             result.ResponseData = roomList;
             result.setIsSuccess(true);
 
         }
         catch (Exception ex){
-            result.setIsSuccess(false);
+            result.IsSuccess = false;
+            result.AddErrorMessage(ex.getMessage());
         }
         finally {
             return result;
@@ -64,9 +68,9 @@ public class RoomDetailService implements IRoomDetailService {
         ResponseWrapper<Room> result = new ResponseWrapper<Room>();
 
         try {
-            Room currentRoom = _roomDao.AddNewRoom(room);
+            Room newRoom = _roomDao.AddNewRoom(room);
 
-            result.ResponseData = currentRoom;
+            result.ResponseData = newRoom;
             result.setIsSuccess(true);
 
         }
