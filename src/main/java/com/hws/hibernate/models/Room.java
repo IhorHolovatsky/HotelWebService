@@ -18,6 +18,11 @@ import java.util.stream.Collectors;
 @Table(name ="Room")
 public class Room {
 
+    @Override
+    public String toString() {
+        return "";
+    }
+
     @Id
     @Column(name = "RoomID")
     @Type(type = "uuid-char")
@@ -33,7 +38,7 @@ public class Room {
     @Type(type = "uuid-char")
     private UUID HotelId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "HotelID", updatable = false, insertable = false)
     private Hotel Hotel;
 

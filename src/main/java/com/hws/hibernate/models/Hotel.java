@@ -15,6 +15,10 @@ import java.util.UUID;
 @Table(name = "Hotel")
 public class Hotel {
 
+    @Override
+    public String toString() {
+        return "";
+    }
     @Id
     @Column(name = "HotelID")
     @Type(type = "uuid-char")
@@ -34,7 +38,7 @@ public class Hotel {
     @Column(name = "HotelName")
     private String HotelName;
 
-    @OneToMany(mappedBy = "Hotel")
+    @OneToMany(mappedBy = "Hotel",fetch = FetchType.EAGER)
     private List<Room> Rooms;
 
     public Hotel(){ }
