@@ -17,7 +17,7 @@
 
                 $("#addRoom").on('click', function(){
 
-                    var addArgs = {};
+                    var addRoomArgs = {};
                     addArgs.roomID = $("#roomID").val();
                     addArgs.hotelID = $("#hotelID").val();
                     addArgs.roomTypeID = $("#roomTypeID").val();
@@ -27,13 +27,13 @@
                     addArgs.floor = $("#floor").val();
 
 
-                    <c:url var="addRoomUrl" value="/AddRoom"></c:url>
+                    <c:url var="addRoomUrl" value="/Secured/Admin/AddRoom"></c:url>
                     $.ajax({
                         url: '${addRoomUrl}',
                         contentType: "application/json",
                         dataType: "html",
                         method: "POST",
-                        data: JSON.stringify(addArgs),
+                        data: JSON.stringify(addRoomArgs),
                         success: function (data) {
                             $("#roomsDb").html(data);
                         }
@@ -47,7 +47,7 @@
             <div class="row align-items-center">
                 <div class="col-6 col-sm-3 col-md-6 flex-first">
                     <div id="roomsDb" style="padding-top: 30px;">
-                        <jsp:include page="RoomsDB.jsp"/>
+                        <jsp:include page="RoomsDb.jsp"/>
                     </div>
                 </div>
                 <div class="col-6 col-sm-3 col-md-6 flex-last">
