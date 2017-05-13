@@ -2,8 +2,10 @@ package com.hws.hibernate.models;
 
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -17,8 +19,8 @@ import java.util.UUID;
         uniqueConstraints={@UniqueConstraint(columnNames={"CustomerId"})})
 public class Customer {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="CustomerID", nullable=false, unique=true)
+    @Type(type = "uuid-char")
     private UUID CustomerId;
 
     @Column(name="FirstName", length=20, nullable=false)
@@ -36,7 +38,7 @@ public class Customer {
     @Column(name="HomePhone", length=20, nullable=false)
     private String HomePhone;
 
-    @Column(name="Email", length=30, nullable=false)
+    @Column(name="Email", length=30, nullable=true)
     private String Email;
 
     @OneToMany(mappedBy = "Customer", cascade = CascadeType.ALL)
@@ -62,5 +64,10 @@ public class Customer {
         LastName = lastName;
         MiddleName = middleName;
         DateBirth = dateBirth;
+    }
+
+    public String getFormattedDateBirth(){
+        Date birthDate = getDateBirth();
+        return new SimpleDateFormat("dd/mm/yyyy").format(birthDate);
     }
 }

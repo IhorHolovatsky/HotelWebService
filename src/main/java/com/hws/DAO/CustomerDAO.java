@@ -44,9 +44,10 @@ public class CustomerDAO implements ICustomerDAO {
     @Transactional
     public Customer AddNewCustomer(Customer customer){
         customer.setCustomerId(UUID.randomUUID());
-
+        customer.setMiddleName("java ...");
         Session session = sessionFactory.getCurrentSession();
-        return (Customer) session.save(customer);
+        session.save(customer);
+        return customer;
     }
 
     @Transactional

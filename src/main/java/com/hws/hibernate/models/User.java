@@ -1,6 +1,8 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.SQLUpdate;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,10 +24,11 @@ public class User {
     private String Login;
 
 
-    @Column(name = "Password")
+    @Column(name = "Password", updatable = false)
     private String Password;
 
     @Column(name = "CustomerID")
+    @Type(type = "uuid-char")
     private UUID CustomerId;
 
     @OneToOne(fetch = FetchType.EAGER)

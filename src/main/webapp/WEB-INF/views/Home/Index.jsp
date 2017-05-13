@@ -21,7 +21,7 @@
                 <p>
                     Pick your start date!
                 <p>
-                <div class="input-group">
+                <div class="input-group" style="max-width: 300px">
                     <input class="form-control datepicker" type="text" id="startDate">
                     <span class="input-group-addon"><span
                             class="glyphicon glyphicon-calendar"></span></span>
