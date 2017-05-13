@@ -4,6 +4,7 @@ import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
 import com.hws.hibernate.models.User;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -11,4 +12,5 @@ import java.util.UUID;
  */
 public interface IRoomDetailService {
     ResponseWrapper<Room> GetCurrentRoom(UUID roomId);
+    ResponseWrapper<List<Room>> GetAllRooms();
 }

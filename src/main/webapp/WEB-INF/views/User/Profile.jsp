@@ -10,11 +10,11 @@
                 <br/>
                 <form action="/Secured/User/Profile" method="post">
                     <div class="form-group">
-                        <label for="firstName" class="col-2 col-form-label">First Name</label>
-                        <div class="col-10">
-                            <input class="form-control" type="text" value="${userProfile.customer.firstName}" id="firstName">
-                        </div>
+                    <label for="firstName" class="col-2 col-form-label">First Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="${userProfile.customer.firstName}" id="firstName">
                     </div>
+                </div>
                     <div class="form-group">
                         <label for="lastName" class="col-2 col-form-label">Last Name</label>
                         <div class="col-10">
