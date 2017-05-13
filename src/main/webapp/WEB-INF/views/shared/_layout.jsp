@@ -14,6 +14,7 @@
     <title><tiles:getAsString name="title" /></title>
 
     <link href="${pageContext.servletContext.contextPath}/content/css/Site.css" rel="stylesheet"></link>
+    <link href="${pageContext.servletContext.contextPath}/content/css/Spinner.css" rel="stylesheet"></link>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap.css" rel='stylesheet'>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap-theme.css" rel='stylesheet'>
     <link href="${pageContext.servletContext.contextPath}/content/css/lib/bootstrap-datepicker.css" rel='stylesheet'>
@@ -22,6 +23,9 @@
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/jquery.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/bootstrap.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/bootstrap-datepicker.js"></script>
+    <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/spin.js"></script>
+    <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/Spinner.js"></script>
+
 </head>
 <body>
 

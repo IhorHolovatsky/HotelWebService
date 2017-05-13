@@ -1,0 +1,12 @@
+﻿/*overlay for spinner*/
+#overlay {
+    display: none;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    z-index: 1900000000;
+}

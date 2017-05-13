@@ -7,10 +7,10 @@
             <c:forEach var="room" items="${rooms}">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             Fucking Image
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="col-md-12">
                                 <h3><a href="/RoomDetailPage?roomId=${room.roomId}">${room.name}</a></h3>
                             </div>
@@ -20,6 +20,9 @@
                             <div class="col-md-12">
                                     ${room.additionalNotes}
                             </div>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="<c:url value="/RoomDetailPage?"></c:url>" class="btn btn-default">Go to Google</a>
                         </div>
                     </div>
                 </div>
