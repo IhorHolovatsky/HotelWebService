@@ -36,7 +36,7 @@ public class RoomFacility {
     @Type(type = "uuid-char")
     private UUID RoomId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RoomID", updatable = false, insertable = false)
     private Room Room;
 
