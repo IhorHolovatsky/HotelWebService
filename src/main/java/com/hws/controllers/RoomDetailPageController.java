@@ -2,13 +2,11 @@ package com.hws.controllers;
 
 import com.hws.Services.nonsecurity.interfaces.IRoomDetailService;
 import com.hws.SharedEntities.ResponseWrapper;
-import com.hws.hibernate.models.Room;
-
-import com.hws.hibernate.models.RoomFacility;
-import com.hws.hibernate.models.User;
+import com.hws.hibernate.models.*;
+import com.hws.Services.security.interfaces.IDetailBookingService;
 import com.hws.viewModels.BookingViewModel;
-import com.hws.viewModels.RegisterViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +34,12 @@ public class RoomDetailPageController extends ControllerBase {
     @Autowired
     IRoomDetailService _roomDetailService;
 
+    @Autowired
+    IDetailBookingService _bookingService;
+
     @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
+   // @RequestMapping(value="/Secured/RoomDetailPage", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView Index(String roomId,String startDateString, String endDateString){
         if (roomId == null){
             return new ModelAndView("redirect:/Rooms");
@@ -56,15 +59,23 @@ public class RoomDetailPageController extends ControllerBase {
 
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
 
+                Date startDate = new Date();
+                Date endDate = new Date();
                 try{
-                Date startDate = f.parse(startDateString);
-                Date endDate = f.parse(endDateString);
+                 startDate = f.parse(startDateString);
+                 endDate = f.parse(endDateString);
                 }
                 catch (ParseException ex){
-
+                    model.addObject("IsSuccess",false);
                 }
 
                 String bookingDateString = "You booking room from " + startDateString + " to " + endDateString;
+
+                model.addObject("StartDate",startDateString);
+
+                model.addObject("EndDate",endDateString);
+
+                model.addObject("RoomId",currentRoom.getRoomId().toString());
 
                 model.addObject("BookingTime",bookingDateString);
 
@@ -73,7 +84,6 @@ public class RoomDetailPageController extends ControllerBase {
                 model.addObject("IsSuccess",false);
             }
 
-
          }else{
             model.addObject("IsSuccess",false);
         }
@@ -81,24 +91,33 @@ public class RoomDetailPageController extends ControllerBase {
         return model;
     }
 
+    //@RequestMapping(value = "/Secured/RoomDetailPage/Booking", method = RequestMethod.POST)
     @RequestMapping(value = "/RoomDetailPage/Booking", method = RequestMethod.POST)
     @ModelAttribute(value = "com/hws/viewModels/BookingViewModel.java")
-    public ModelAndView Booking(BookingViewModel model){
-        ModelAndView toReturn = new ModelAndView("redirect:/login");
+    public ModelAndView booking(BookingViewModel model){
+        ModelAndView toReturn = new ModelAndView("redirect:/ThanksPage");
+
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date startDate = new Date();
+        Date endDate = new Date();
+        try{
+            startDate = f.parse(model.StartDate);
+            endDate = f.parse(model.EndDate);
+        }
+        catch (ParseException ex){
+
+        }
+
+        UUID RoomId = UUID.fromString(model.RoomId);
+        UUID UserId = UUID.fromString(model.UserId);
 
 
+        //END TEST
 
-        String a ="a";
+        _bookingService.AddBooking(startDate,endDate,RoomId,UserId);
 
 
-        //ResponseWrapper<User> result = registerService.RegisterNewUser(model.getUsername(), model.getPassword());
-
-//        if (!result.IsSuccess){
-//            return new ModelAndView("redirect:/Register?error=" + result.getErrorMessage());
-//        }
-//        ModelAndView toReturn = new ModelAndView("redirect:/login");
-//        toReturn.addObject("login", result.ResponseData.getLogin());
-//        return toReturn;
         return toReturn;
     }
     

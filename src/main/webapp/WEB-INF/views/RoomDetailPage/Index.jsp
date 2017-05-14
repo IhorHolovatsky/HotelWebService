@@ -1,17 +1,15 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">Room Page</tiles:putAttribute>
 
-
     <tiles:putAttribute name="body">
-
-
         <div class="container-fluid">
             <div class="content-wrapper">
                 <div class="item-container">
-                    <form method="POST" action="/RoomDetailPage/Booking">
+
                     <div class="container">
                         <div class="col-md-12">
 
@@ -35,14 +33,22 @@
                             <hr>
 
                             <div class="btn-group cart">
-                                <button type="submit" class="btn btn-primary pull-right">
-                                    Booking
-                                </button>
+                                <form method="POST" action="/RoomDetailPage/Booking">
+
+                                    <input type="hidden" name="RoomId" value="${RoomId}"/>
+                                    <input type="hidden" name="StartDate" value="${StartDate}"/>
+                                    <input type="hidden" name="EndDate" value="${EndDate}"/>
+                                    <input type="hidden" name="UserId" value="C8B1F66F-DC7D-4B73-AA04-07EBA5F679E3"/>
+
+                                    <button type="submit" class="btn btn-primary pull-right">
+                                         Booking
+                                    </button>
+                                <form>
                             </div>
 
                         </div>
                     </div>
-                    </form>
+
                 </div>
                 <div class="container-fluid">
                     <div class="col-md-12 product-info">
@@ -75,11 +81,5 @@
                 </div>
             </div>
         </div>
-
-        <%--<tiles:putAttribute name="scripts">--%>
-            <%--<script type="text/javascript">--%>
-
-            <%--</script>--%>
-        <%--</tiles:putAttribute>--%>
     </tiles:putAttribute>
 </tiles:insertDefinition>

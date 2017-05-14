@@ -18,6 +18,7 @@ public class User {
 
     @Id
     @Column(name = "UserID")
+    @Type(type = "uuid-char")
     private UUID UserId;
 
     @Column(name = "Login")

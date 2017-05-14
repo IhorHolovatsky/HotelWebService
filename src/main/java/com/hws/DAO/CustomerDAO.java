@@ -3,6 +3,7 @@ package com.hws.DAO;
 import com.hws.DAO.interfaces.ICustomerDAO;
 import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.Customer;
+import com.hws.hibernate.models.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,6 +40,14 @@ public class CustomerDAO implements ICustomerDAO {
     public Customer GetCustomerById(UUID customerId){
         Session session = sessionFactory.getCurrentSession();
         return (Customer)session.get(Customer.class, customerId);
+    }
+
+    @Transactional
+    public Customer GetCustomerByUserId(UUID userId){
+        Session session = sessionFactory.getCurrentSession();
+        User user = (User)session.get(User.class, userId);
+
+        return GetCustomerById(user.getCustomerId());
     }
 
     @Transactional

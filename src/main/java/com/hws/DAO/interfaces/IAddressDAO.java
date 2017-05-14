@@ -15,6 +15,7 @@ public interface IAddressDAO {
     List<Address> GetAllAddresses();
     Address GetAddressById(UUID addressId);
     Address AddNewAddress(Address address);
+    Address AddNewAddressWithUUID(Address address, UUID addressUUID);
     void UpdateAddress(Address address);
     void DeleteAddressById(UUID addressId);
     void DeleteAddress(Address addressToDelete);

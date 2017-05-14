@@ -14,6 +14,7 @@ public interface ICustomerDAO {
     void setSessionFactory(SessionFactory sessionFactory);
     List<Customer> GetAllCustomers();
     Customer GetCustomerById(UUID userId);
+    Customer GetCustomerByUserId(UUID userId);
     Customer AddNewCustomer(Customer user);
     void UpdateCustomer(Customer user);
     void DeleteCustomerById(UUID userId);

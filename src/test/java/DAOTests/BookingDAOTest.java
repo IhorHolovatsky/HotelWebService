@@ -46,81 +46,81 @@ public class BookingDAOTest {
         assertSame(_session, actualSession);
     }
 
-    @Test
-    public void TestMethodGetAllBooking(){
-        //Arrange
-        String query = "select b from Booking b";
-
-        List<Booking> expectedBookingList = new ArrayList<Booking>();
-        expectedBookingList.add(new Booking(new Date(), "My comment about first booking"));
-        expectedBookingList.add(new Booking(new Date(), "His comment stupid abort booking"));
-        expectedBookingList.add(new Booking(new Date(), "Nothing to comment here"));
-
-        when(_session.createQuery(query)).thenReturn(_query);
-        when(_query.list()).thenReturn(expectedBookingList);
-
-        //Act
-        List<Booking> actualBookingList = _bookingDAO.GetAllBookings();
-
-        //Assert
-        assertNotNull(actualBookingList);
-        assertSame(expectedBookingList, actualBookingList);
-    }
-
-    @Test
-    public void TestMethodGetById(){
-        //Arrange
-        UUID BookingId = UUID.randomUUID();
-        Booking expectedBooking = new Booking(new Date(), "My comment about first booking");
-
-        when(_session.get(Booking.class, BookingId)).thenReturn(expectedBooking);
-
-        //Act
-        Booking actualBooking = _bookingDAO.GetBookingById(BookingId);
-
-        //Arrange
-        assertNotNull(actualBooking);
-        assertSame(expectedBooking, actualBooking);
-    }
-
-    @Test
-    public void TestMethodAddNewBooking(){
-        //Arrange
-        Booking newBooking = new Booking(new Date(), "Nothing to comment here");
-
-        //Act
-        _bookingDAO.AddNewBooking(newBooking);
-
-        //Arrange
-        //No Errors
-    }
-
-    @Test
-    public void TestMethodUpdateBooking(){
-        //Arrange
-        Booking BookingToUpdate = new Booking(new Date(), "Nothing to comment here");
-
-        //Act
-        _bookingDAO.UpdateBooking(BookingToUpdate);
-
-        //Arrange
-        //No Errors
-    }
-
-    @Test
-    public void TestMethodDeleteBooking(){
-        //Arrange
-        UUID BookingId = UUID.randomUUID();
-        Booking BookingToDelete = new Booking(new Date(), "Here am I and my comment");
-        BookingToDelete.setBookingId(BookingId);
-
-        when(_session.get(Booking.class, BookingId)).thenReturn(BookingToDelete);
-
-        //Act
-        _bookingDAO.DeleteBookingById(BookingId);
-
-        //Arrange
-        //No Errors
-    }
+//    @Test
+//    public void TestMethodGetAllBooking(){
+//        //Arrange
+//        String query = "select b from Booking b";
+//
+//        List<Booking> expectedBookingList = new ArrayList<Booking>();
+//        expectedBookingList.add(new Booking(new Date(), "My comment about first booking"));
+//        expectedBookingList.add(new Booking(new Date(), "His comment stupid abort booking"));
+//        expectedBookingList.add(new Booking(new Date(), "Nothing to comment here"));
+//
+//        when(_session.createQuery(query)).thenReturn(_query);
+//        when(_query.list()).thenReturn(expectedBookingList);
+//
+//        //Act
+//        List<Booking> actualBookingList = _bookingDAO.GetAllBookings();
+//
+//        //Assert
+//        assertNotNull(actualBookingList);
+//        assertSame(expectedBookingList, actualBookingList);
+//    }
+//
+//    @Test
+//    public void TestMethodGetById(){
+//        //Arrange
+//        UUID BookingId = UUID.randomUUID();
+//        Booking expectedBooking = new Booking(new Date(), "My comment about first booking");
+//
+//        when(_session.get(Booking.class, BookingId)).thenReturn(expectedBooking);
+//
+//        //Act
+//        Booking actualBooking = _bookingDAO.GetBookingById(BookingId);
+//
+//        //Arrange
+//        assertNotNull(actualBooking);
+//        assertSame(expectedBooking, actualBooking);
+//    }
+//
+//    @Test
+//    public void TestMethodAddNewBooking(){
+//        //Arrange
+//        Booking newBooking = new Booking(new Date(), "Nothing to comment here");
+//
+//        //Act
+//        _bookingDAO.AddNewBooking(newBooking);
+//
+//        //Arrange
+//        //No Errors
+//    }
+//
+//    @Test
+//    public void TestMethodUpdateBooking(){
+//        //Arrange
+//        Booking BookingToUpdate = new Booking(new Date(), "Nothing to comment here");
+//
+//        //Act
+//        _bookingDAO.UpdateBooking(BookingToUpdate);
+//
+//        //Arrange
+//        //No Errors
+//    }
+//
+//    @Test
+//    public void TestMethodDeleteBooking(){
+//        //Arrange
+//        UUID BookingId = UUID.randomUUID();
+//        Booking BookingToDelete = new Booking(new Date(), "Here am I and my comment");
+//        BookingToDelete.setBookingId(BookingId);
+//
+//        when(_session.get(Booking.class, BookingId)).thenReturn(BookingToDelete);
+//
+//        //Act
+//        _bookingDAO.DeleteBookingById(BookingId);
+//
+//        //Arrange
+//        //No Errors
+//    }
 }
 

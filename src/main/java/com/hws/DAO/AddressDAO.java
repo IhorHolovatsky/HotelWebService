@@ -48,6 +48,14 @@ public class AddressDAO implements IAddressDAO {
         return (Address)session.save(address);
     }
 
+    @Override
+    public Address AddNewAddressWithUUID(Address address, UUID addressUUID) {
+        address.setAddressId(addressUUID);
+
+        Session session = sessionFactory.getCurrentSession();
+        return (Address)session.save(address);
+    }
+
     @Transactional
     public void UpdateAddress(Address address){
         Session session = sessionFactory.getCurrentSession();

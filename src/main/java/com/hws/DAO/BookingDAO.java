@@ -48,7 +48,8 @@ public class BookingDAO implements IBookingDAO {
         booking.setBookingId(UUID.randomUUID());
 
         Session session = sessionFactory.getCurrentSession();
-        return (Booking)session.save(booking);
+        session.save(booking);
+        return booking;
     }
 
     @Transactional

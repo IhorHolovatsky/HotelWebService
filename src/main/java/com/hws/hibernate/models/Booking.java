@@ -1,6 +1,7 @@
 package com.hws.hibernate.models;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.format.DateTimeFormatter;
@@ -17,11 +18,12 @@ import java.util.UUID;
         uniqueConstraints={@UniqueConstraint(columnNames={"BookingID"})})
 public class Booking {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="BookingID", nullable=false, unique=true)
+    @Type(type = "uuid-char")
     private UUID BookingId;
 
     @Column(name="CustomerID")
+    @Type(type = "uuid-char")
     private UUID CustomerId;
 
     @ManyToOne
@@ -39,12 +41,13 @@ public class Booking {
 
     public Booking() {
         this(null,
-                null);
+                null,null);
     }
 
-    public Booking(Date dateTimeMade, String bookingComment) {
+    public Booking(Date dateTimeMade, String bookingComment, UUID customerId) {
         DateTimeMade = dateTimeMade;
         BookingComment = bookingComment;
+        CustomerId = customerId;
     }
 
     @Override

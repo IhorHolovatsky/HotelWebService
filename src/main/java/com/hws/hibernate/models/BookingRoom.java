@@ -2,6 +2,7 @@ package com.hws.hibernate.models;
 
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -20,9 +21,11 @@ import java.util.UUID;
 public class BookingRoom {
     @Id
     @Column(name = "BookingRoomID")
+    @Type(type = "uuid-char")
     private UUID BookingRoomId;
 
     @Column(name= "BookingID")
+    @Type(type = "uuid-char")
     private UUID BookingId;
 
     @ManyToOne
@@ -30,6 +33,7 @@ public class BookingRoom {
     private Booking Booking;
 
     @Column(name = "RoomID")
+    @Type(type = "uuid-char")
     private UUID RoomId;
 
     @ManyToOne
@@ -37,6 +41,7 @@ public class BookingRoom {
     private Room Room;
 
     @Column(name = "GuestID")
+    @Type(type = "uuid-char")
     private UUID GuestId;
 
     @ManyToOne(cascade = CascadeType.ALL)
