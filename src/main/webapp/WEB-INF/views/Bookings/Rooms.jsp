@@ -8,9 +8,9 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-3">
-                        <img src="/GetImage?roomId=${room.roomId}">
+                        <img width="150px" src="/GetImage?roomId=${room.roomId}">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="col-md-12">
                             <h3><a href="/RoomDetailPage?roomId=${room.roomId}">${room.name}</a></h3>
                         </div>
@@ -20,11 +20,11 @@
                         <div class="col-md-12">
                                 ${room.additionalNotes}
                         </div>
-                        <div class="col-md-2">
-                            <a href="#" class="btn btn-info bookRoom"
-                               style="margin-top:20px;"
-                               data-room-id="${room.roomId}">Book It</a>
-                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="#" class="btn btn-info bookRoom"
+                           style="margin-top:20px;"
+                           data-room-id="${room.roomId}">Book It</a>
                     </div>
                 </div>
             </div>
