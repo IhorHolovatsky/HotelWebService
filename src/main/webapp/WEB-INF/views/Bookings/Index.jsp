@@ -39,8 +39,8 @@
                     var endDate = $("#endDate").val();
 
                     window.location.href = bookUrl + "/?roomId=" + roomId +
-                        "&startDate=" + startDate +
-                        "&endDate=" + endDate;
+                        "&startDateString=" + startDate +
+                        "&endDateString=" + endDate;
                 });
             });
         </script>

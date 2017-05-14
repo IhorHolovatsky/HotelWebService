@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -32,11 +33,17 @@ public class BookingController extends ControllerBase {
     SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @RequestMapping(value = "/Rooms", method = RequestMethod.GET)
-    public ModelAndView Index(){
+    public ModelAndView Index(String startDateString) throws ParseException {
         ModelAndView model = new ModelAndView("Bookings/Index");
 
-        Date startDate = new Date();
+        Date startDate;
         Date endDate = new Date();
+        if (startDateString == null){
+            startDate = new Date();
+        } else{
+            startDate = dataFormat.parse(startDateString);
+            endDate = startDate;
+        }
 
         ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(startDate, endDate);
         List<RoomType> roomTypes =  roomTypeDAO.GetAllRoomTypes();

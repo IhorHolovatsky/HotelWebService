@@ -17,7 +17,7 @@ public class SearchArgs {
     public String EndDate;
 
     public UUID getRoomTypeUUID(){
-        if (RoomTypeId == null)
+        if (RoomTypeId == null || RoomTypeId.equals(""))
             return null;
 
         return UUID.fromString(RoomTypeId);
