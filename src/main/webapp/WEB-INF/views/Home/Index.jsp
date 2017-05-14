@@ -27,10 +27,24 @@
                             class="glyphicon glyphicon-calendar"></span></span>
                 </div>
 
-                <a href="">Go, pick up your perfect room!</a>
+                <a id="roomLink" href="#">Go, pick up your perfect room!</a>
             </div>
 
         </div>
+        <tiles:putAttribute name="scripts">
+            <script>
+                $(document).ready(function () {
+                   $("#roomLink").on('click', function(){
+                       var selectedDate = $("#startDate").val();
+                       if (!selectedDate){
+                           selectedDate = new Date().toDateString();
+                       }
+
+                       window.location.href = "/Rooms?startDate=" + selectedDate;
+                   })
+                });
+            </script>
+        </tiles:putAttribute>
     </tiles:putAttribute>
 </tiles:insertDefinition>
 
