@@ -12,7 +12,9 @@
                     </div>
                     <div class="col-md-7">
                         <div class="col-md-12">
-                            <h3><a href="/RoomDetailPage?roomId=${room.roomId}">${room.name}</a></h3>
+                            <h3><a class="bookRoom"
+                                   data-room-id="${room.roomId}"
+                                   href="#">${room.name}</a></h3>
                         </div>
                         <div class="col-md-12">
                             <b>$ ${room.price}</b>
