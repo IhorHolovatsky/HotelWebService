@@ -18,13 +18,13 @@
                 $("#addRoom").on('click', function(){
 
                     var addRoomArgs = {};
-                    addArgs.roomID = $("#roomID").val();
-                    addArgs.hotelID = $("#hotelID").val();
-                    addArgs.roomTypeID = $("#roomTypeID").val();
-                    addArgs.name = $("#name").val();
-                    addArgs.price = parseFloat($('#price').val()).toFixed(2);
-                    addArgs.number = $("#number").val();
-                    addArgs.floor = $("#floor").val();
+                    addRoomArgs.roomID = $("#roomID").val();
+                    addRoomArgs.hotelID = $("#hotelID").val();
+                    addRoomArgs.roomTypeID = $("#roomTypeID").val();
+                    addRoomArgs.name = $("#name").val();
+                    addRoomArgs.price = parseFloat($('#price').val()).toFixed(2);
+                    addRoomArgs.number = $("#number").val();
+                    addRoomArgs.floor = $("#floor").val();
 
 
                     <c:url var="addRoomUrl" value="/Secured/Admin/AddRoom"></c:url>

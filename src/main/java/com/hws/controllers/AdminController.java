@@ -35,7 +35,7 @@ public class AdminController extends ControllerBase {
         ModelAndView model = new ModelAndView("Admin/Index");
         ResponseWrapper<List<Room>> responseWrapper = _roomDetailService.GetAllRooms();
 
-        if(responseWrapper.getIsSuccess()){
+        if(responseWrapper.IsSuccess){
             List<Room> allRooms = responseWrapper.ResponseData;
             model.addObject("allRooms", allRooms);
         } else{ }

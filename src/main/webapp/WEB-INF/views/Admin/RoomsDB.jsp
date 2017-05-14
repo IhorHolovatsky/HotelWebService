@@ -34,13 +34,13 @@
             <c:out value="${rooms.roomType.roomType}" />
         </td>
         <td>
-            <button class="btn btn-warning .btn-sm" data-toggle="confirmation">
-                <div id="edit" class="glyphicon glyphicon-pencil"></div>
+            <button class="btn btn-warning .btn-sm" id="edit" data-toggle="confirmation">
+                <div class="glyphicon glyphicon-pencil"></div>
             </button>
         </td>
         <td>
-            <button class="btn btn-danger .btn-sm" data-toggle="confirmation">
-                <div id="delete" class="glyphicon glyphicon-remove-circle"></div>
+            <button class="btn btn-danger .btn-sm" id="delete" data-toggle="confirmation">
+                <div class="glyphicon glyphicon-remove-circle"></div>
             </button>
         </td>
     </tr>
