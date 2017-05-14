@@ -40,7 +40,7 @@
                            selectedDate = new Date().toDateString();
                        }
 
-                       window.location.href = "/Rooms?startDate=" + selectedDate;
+                       window.location.href = "/Rooms?startDateString=" + selectedDate;
                    })
                 });
             </script>

@@ -37,12 +37,13 @@ public class BookingController extends ControllerBase {
         ModelAndView model = new ModelAndView("Bookings/Index");
 
         Date startDate;
+        Date endDate = new Date();
         if (startDateString == null){
             startDate = new Date();
         } else{
             startDate = dataFormat.parse(startDateString);
+            endDate = startDate;
         }
-        Date endDate = new Date();
 
         ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(startDate, endDate);
         List<RoomType> roomTypes =  roomTypeDAO.GetAllRoomTypes();
