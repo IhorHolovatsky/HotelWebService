@@ -93,7 +93,8 @@ public class RoomDetailPageController extends ControllerBase {
 
                 model.addObject("Room",currentRoom);
 
-                model.addObject("UserId",UUID.fromString(this.getUser().getUserId().toString()));
+                model.addObject("isSuccess",true);
+
             }else{
                 model.addObject("IsSuccess",false);
             }
@@ -124,13 +125,15 @@ public class RoomDetailPageController extends ControllerBase {
         }
 
         UUID RoomId = UUID.fromString(model.RoomId);
-        UUID UserId = UUID.fromString(model.UserId);
+        UUID UserId = UUID.fromString(this.getUser().getUserId().toString());
 
-
-        //END TEST
-
-        _bookingService.AddBooking(startDate,endDate,RoomId,UserId);
-
+        try {
+            _bookingService.AddBooking(startDate, endDate, RoomId, UserId);
+        }
+        catch (Exception ex){
+            toReturn = new ModelAndView("RoomDetailPage/Index");
+            toReturn.addObject("isSuccess",false);
+        }
 
         return toReturn;
     }

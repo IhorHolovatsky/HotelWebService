@@ -6,79 +6,89 @@
     <tiles:putAttribute name="title">Room Page</tiles:putAttribute>
 
     <tiles:putAttribute name="body">
-        <div class="container-fluid">
-            <div class="content-wrapper">
-                <div class="item-container">
 
-                    <div class="container">
-                        <div class="col-md-12">
-
-                            <div class="product">
-                                <img src="/GetImage?roomId=${RoomId}">
-                            </div>
-                        </div>
-
-                        <div class="col-md-7">
-                            <div class="product-title">${Room.name}</div>
-                            <div class="product-desc">${Room.roomType.roomType}</div>
-
-                            <hr>
-                            <div class="product-price">$ ${CurrentPrice}</div>
-
-                            <hr>
-                            <div class="product-price">
-                                ${BookingTime}
-                            </div>
-                            <hr>
-
-                            <div class="btn-group cart">
-                                <form method="POST" action="/Secured/RoomDetailPage/Booking">
-
-                                    <input type="hidden" name="RoomId" value="${RoomId}"/>
-                                    <input type="hidden" name="StartDate" value="${StartDate}"/>
-                                    <input type="hidden" name="EndDate" value="${EndDate}"/>
-                                    <input type="hidden" name="UserId" value="${UserId}"/>
-
-                                    <button type="submit" class="btn btn-primary pull-right">
-                                         Booking
-                                    </button>
-                                <form>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
+        <c:choose>
+            <c:when test="${isSuccess == false}">
+                <h3>Sorry, something really bad happened! Please, try again later!
+                <a href="Contact"> Go to contacts</a></h3>
+            </c:when>
+            <c:otherwise>
                 <div class="container-fluid">
-                    <div class="col-md-12 product-info">
-                        <ul id="myTab" class="nav nav-tabs nav_tabs">
+                    <div class="content-wrapper">
+                        <div class="item-container">
 
-                            <li class="active">
-                                <a href="#service-one" data-toggle="tab">DESCRIPTION</a>
-                            </li>
+                            <div class="container">
+                                <div class="col-md-12">
 
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
-                            <div class="tab-pane fade in active" id="service-one">
+                                    <div class="product">
+                                        <img src="/GetImage?roomId=${RoomId}">
+                                    </div>
+                                </div>
 
-                                <section class="container product-info">
-                                        ${Room.additionalNotes}
+                                <div class="col-md-7">
+                                    <div class="product-title">${Room.name}</div>
+                                    <div class="product-desc">${Room.roomType.roomType}</div>
 
-                                    <h3>Room Features:</h3>
+                                    <hr>
+                                    <div class="product-price">$ ${CurrentPrice}</div>
+
+                                    <hr>
+                                    <div class="product-price">
+                                            ${BookingTime}
+                                    </div>
+                                    <hr>
+
+                                    <div class="btn-group cart">
+                                        <form method="POST" action="/Secured/RoomDetailPage/Booking">
+
+                                            <input type="hidden" name="RoomId" value="${RoomId}"/>
+                                            <input type="hidden" name="StartDate" value="${StartDate}"/>
+                                            <input type="hidden" name="EndDate" value="${EndDate}"/>
+
+                                            <button type="submit" class="btn btn-primary pull-right">
+                                                Booking
+                                            </button>
+                                            <form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="container-fluid">
+                            <div class="col-md-12 product-info">
+                                <ul id="myTab" class="nav nav-tabs nav_tabs">
+
+                                    <li class="active">
+                                        <a href="#service-one" data-toggle="tab">DESCRIPTION</a>
+                                    </li>
+
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade in active" id="service-one">
+
+                                        <section class="container product-info">
+                                                ${Room.additionalNotes}
+
+                                            <h3>Room Features:</h3>
 
                                             <c:forEach var="facility" items="${FacilitiesList}">
                                                 <li>${facility}</li>
                                             </c:forEach>
 
-                                </section>
+                                        </section>
 
+                                    </div>
+
+                                </div>
+                                <hr>
                             </div>
-
                         </div>
-                        <hr>
                     </div>
                 </div>
-            </div>
-        </div>
+            </c:otherwise>
+        </c:choose>
+
+
     </tiles:putAttribute>
 </tiles:insertDefinition>

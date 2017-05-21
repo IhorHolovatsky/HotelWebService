@@ -15,5 +15,4 @@ public class BookingViewModel {
     public String EndDate;
 
     public String RoomId;
-    public String UserId;
 }
