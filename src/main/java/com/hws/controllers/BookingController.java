@@ -6,6 +6,7 @@ import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
 import com.hws.hibernate.models.RoomType;
 import com.hws.viewModels.SearchArgs;
+import com.util.DateTimeUtil;
 import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,15 +38,15 @@ public class BookingController extends ControllerBase {
         ModelAndView model = new ModelAndView("Bookings/Index");
 
         Date startDate;
-        Date endDate = new Date();
+        Date endDate = DateTimeUtil.getTodayDate();
         if (startDateString == null){
-            startDate = new Date();
+            startDate = DateTimeUtil.getTodayDate();
         } else{
             startDate = dataFormat.parse(startDateString);
             endDate = startDate;
         }
 
-        ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(startDate, endDate);
+        ResponseWrapper<List<Room>> result =  bookingService.getAvailableRooms(startDate, endDate, null);
         List<RoomType> roomTypes =  roomTypeDAO.GetAllRoomTypes();
 
         if (!result.IsSuccess)

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.awt.print.Book;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class BookingRoom {
     @Type(type = "uuid-char")
     private UUID BookingId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BookingID", updatable = false, insertable = false)
     private Booking Booking;
 
@@ -36,7 +37,7 @@ public class BookingRoom {
     @Type(type = "uuid-char")
     private UUID RoomId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RoomID", updatable = false, insertable = false)
     private Room Room;
 
@@ -64,5 +65,23 @@ public class BookingRoom {
         StartDate = startDate;
         EndDate = endDate;
         GuestId = guestId;
+    }
+
+    public String getStartDateFormat(){
+        Date startDate = getStartDate();
+
+        if (startDate == null)
+            return "";
+
+        return new SimpleDateFormat("dd/MM/yyyy").format(startDate);
+    }
+
+    public String getEndDateFormat(){
+        Date endDate = getEndDate();
+
+        if (endDate == null)
+            return "";
+
+        return new SimpleDateFormat("dd/MM/yyyy").format(endDate);
     }
 }

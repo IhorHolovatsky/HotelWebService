@@ -85,5 +85,21 @@ public class BookingService implements IBookingService {
         return result;
     }
 
+    @Override
+    public ResponseWrapper<Boolean> RemoveBooking(UUID bookingId) {
+        ResponseWrapper<Boolean> result = new ResponseWrapper<>();
+
+        try {
+            bookingDAO.DeleteBookingById(bookingId);
+            result.IsSuccess = true;
+            result.ResponseData = true;
+        } catch (Exception e) {
+            result.IsSuccess = false;
+            result.AddErrorMessage(e.getMessage());
+        }
+
+        return result;
+    }
+
 
 }

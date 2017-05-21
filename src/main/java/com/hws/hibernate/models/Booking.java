@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +38,7 @@ public class Booking {
     @Column(name="BookingComment", length=100, nullable=true)
     private String BookingComment;
 
-    @OneToMany(mappedBy = "Booking", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Booking", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<BookingRoom> BookingRooms;
 
     public Booking() {
@@ -58,5 +60,14 @@ public class Booking {
                 ", DateTimeMade=" + DateTimeMade +
                 ", BookingComment='" + BookingComment + '\'' +
                 '}';
+    }
+
+    public String getDateTimeMadeFormat(){
+        Date dateTimeMade = getDateTimeMade();
+
+        if (dateTimeMade == null)
+            return "";
+
+        return new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(dateTimeMade);
     }
 }

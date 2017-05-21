@@ -67,7 +67,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" style="height: 500px; overflow-y: scroll">
                 <h2>Your Bookings</h2>
                 <br/>
                 <div class="container-fluid">
@@ -78,5 +78,29 @@
             </div>
         </div>
 
+        <tiles:putAttribute name="scripts">
+            <script>
+                $(document).ready(function(){
+                    initButtons();
+                });
+
+                function initButtons(){
+                    $(".removeBooking").unbind('click').on('click', function(e){
+                        var bookId = e.target.attributes["data-booking-id"].value;
+
+                        $.ajax({
+                            url: '/Secured/User/DeleteBooking?bookingUUID=' + bookId,
+                            contentType: "application/json",
+                            dataType: "html",
+                            method: "POST",
+                            success: function (data) {
+                                $("#bookings").html(data);
+                                initButtons();
+                            }
+                        });
+                    });
+                }
+            </script>
+        </tiles:putAttribute>
     </tiles:putAttribute>
 </tiles:insertDefinition>
