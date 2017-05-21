@@ -72,7 +72,7 @@ public class BookingRoomDAO implements IBookingRoomDAO {
     public List<BookingRoom> GetBookings(Date startDate, Date endDate){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select br from BookingRoom br " +
-                                             "where br.StartDate = :startDate and br.EndDate = :endDate");
+                                             "where :startDate between (br.StartDate and br.EndDate) and (:endDate between (br.StartDate and br.EndDate))");
         query.setParameter("startDate", startDate);
         query.setParameter("endDate", endDate);
 

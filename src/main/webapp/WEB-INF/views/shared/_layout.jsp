@@ -33,10 +33,10 @@
 <nav class="navbar navbar-default navbar-inverse" style="border-radius: 0;">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">HWS</a>
+            <a class="navbar-brand" href="<c:url value="/" />">HWS</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li class="active"><a href="<c:url value="/" />">Home</a></li>
             <li><a href="<c:url value="/Rooms" />">Rooms</a></li>
             <li><a href="<c:url value="/Contact" />">Contact Us</a></li>
         </ul>
