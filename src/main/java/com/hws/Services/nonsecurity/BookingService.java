@@ -1,9 +1,11 @@
 package com.hws.Services.nonsecurity;
 
+import com.hws.DAO.interfaces.IBookingDAO;
 import com.hws.DAO.interfaces.IBookingRoomDAO;
 import com.hws.DAO.interfaces.IRoomDAO;
 import com.hws.Services.nonsecurity.interfaces.IBookingService;
 import com.hws.SharedEntities.ResponseWrapper;
+import com.hws.hibernate.models.Booking;
 import com.hws.hibernate.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ import java.util.stream.Collectors;
 public class BookingService implements IBookingService {
     @Autowired
     IBookingRoomDAO bookingRoomDAO;
+
+    @Autowired
+    IBookingDAO bookingDAO;
 
     @Autowired
     IRoomDAO roomDAO;
@@ -63,4 +68,22 @@ public class BookingService implements IBookingService {
 
         return roomsResult;
     }
+
+    @Override
+    public ResponseWrapper<List<Booking>> GetCustomerBookings(UUID customerId) {
+        ResponseWrapper<List<Booking>> result = new ResponseWrapper<>();
+
+        try {
+            List<Booking> bookings = bookingDAO.GetCustomerBookings(customerId);
+            result.IsSuccess = true;
+            result.ResponseData = bookings;
+        } catch (Exception e) {
+            result.IsSuccess = false;
+            result.AddErrorMessage(e.getMessage());
+        }
+
+        return result;
+    }
+
+
 }

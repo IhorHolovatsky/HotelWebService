@@ -18,4 +18,5 @@ public interface IBookingDAO {
     void UpdateBooking(Booking booking);
     void DeleteBookingById(UUID bookingId);
     void DeleteBooking(Booking bookingToDelete);
+    List<Booking> GetCustomerBookings(UUID customerId);
 }

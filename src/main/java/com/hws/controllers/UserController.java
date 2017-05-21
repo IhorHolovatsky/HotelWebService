@@ -1,7 +1,9 @@
 package com.hws.controllers;
 
+import com.hws.Services.nonsecurity.interfaces.IBookingService;
 import com.hws.Services.security.interfaces.IUserProfileService;
 import com.hws.SharedEntities.ResponseWrapper;
+import com.hws.hibernate.models.Booking;
 import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.User;
 import org.bouncycastle.math.raw.Mod;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 /**
  * Created by Ihor on 4/17/2017.
  */
@@ -21,6 +25,9 @@ public class UserController extends ControllerBase {
 
     @Autowired
     IUserProfileService userProfileService;
+
+    @Autowired
+    IBookingService bookingService;
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/Secured/User/Index", method = RequestMethod.GET)
@@ -54,6 +61,10 @@ public class UserController extends ControllerBase {
         else if (success != null){
             model.addObject("success", "Your changes was saved successfully!");
         }
+
+        ResponseWrapper<List<Booking>> bookingsResult = bookingService.GetCustomerBookings(getUser().getCustomerId());
+
+        model.addObject("userBookings", bookingsResult.ResponseData);
 
         return model;
     }

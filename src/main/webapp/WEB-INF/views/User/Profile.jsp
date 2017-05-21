@@ -70,10 +70,10 @@
             <div class="col-md-8">
                 <h2>Your Bookings</h2>
                 <br/>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3"></div>
+                <div class="container-fluid">
+                    <div id="bookings" style="padding-top: 30px;">
+                        <jsp:include page="UserBookings.jsp" />
+                    </div>
                 </div>
             </div>
         </div>

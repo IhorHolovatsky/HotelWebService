@@ -69,4 +69,13 @@ public class BookingDAO implements IBookingDAO {
         Session session = sessionFactory.getCurrentSession();
         session.delete(bookingToDelete);
     }
+
+    @Transactional
+    public List<Booking> GetCustomerBookings(UUID customerId){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select b from Booking b where b.CustomerId = :customerId order by b.DateTimeMade desc");
+        query.setParameter("customerId", customerId);
+
+        return query.list();
+    }
 }
