@@ -6,10 +6,12 @@ import com.hws.DAO.interfaces.IRoomDAO;
 import com.hws.Services.nonsecurity.interfaces.IBookingService;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Booking;
+import com.hws.hibernate.models.BookingRoom;
 import com.hws.hibernate.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -34,15 +36,42 @@ public class BookingService implements IBookingService {
         return getAvailableRooms(startDate, startDate);
     }
 
-    @Override
-    public ResponseWrapper<List<Room>> getAvailableRooms(Date startDate, Date endDate) {
-        ResponseWrapper<List<Room>> result = new ResponseWrapper<>();
+//    @Override
+//    public ResponseWrapper<List<Room>> getAvailableRooms(Date startDate, Date endDate) {
+//        ResponseWrapper<List<Room>> result = new ResponseWrapper<>();
+//
+//        try {
+//            List<Room> allRooms = roomDAO.GetAvailableRooms(startDate, endDate);
+//            result.IsSuccess = true;
+//            result.ResponseData = allRooms;
+//        } catch (Exception e) {
+//            result.IsSuccess = false;
+//            result.AddErrorMessage(e.getMessage());
+//        }
+//
+//        return result;
+//    }
 
-        try {
-            List<Room> allRooms = roomDAO.GetAvailableRooms(startDate, endDate);
+    @Override
+    public ResponseWrapper<List<Room>> getAvailableRooms(Date startDate, Date endDate){
+        ResponseWrapper<List<Room>> result = new ResponseWrapper<>();
+        try{
+            List<BookingRoom> bookings = bookingRoomDAO.GetBookings(startDate, endDate);
+            List<Room> rooms = roomDAO.GetAllRooms();
+            List<Room> availableRooms =  new ArrayList<>();
+
+            for (Room room : rooms){
+                List<BookingRoom> roomBookings = bookings.stream()
+                        .filter(b -> b.getRoomId().equals(room.getRoomId()))
+                        .collect(Collectors.toList());
+                if (roomBookings.size() == 0){
+                    availableRooms.add(room);
+                }
+            }
+
             result.IsSuccess = true;
-            result.ResponseData = allRooms;
-        } catch (Exception e) {
+            result.ResponseData = availableRooms;
+        }catch (Exception e){
             result.IsSuccess = false;
             result.AddErrorMessage(e.getMessage());
         }
@@ -77,6 +106,22 @@ public class BookingService implements IBookingService {
             List<Booking> bookings = bookingDAO.GetCustomerBookings(customerId);
             result.IsSuccess = true;
             result.ResponseData = bookings;
+        } catch (Exception e) {
+            result.IsSuccess = false;
+            result.AddErrorMessage(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @Override
+    public ResponseWrapper<Boolean> RemoveBooking(UUID bookingId) {
+        ResponseWrapper<Boolean> result = new ResponseWrapper<>();
+
+        try {
+            bookingDAO.DeleteBookingById(bookingId);
+            result.IsSuccess = true;
+            result.ResponseData = true;
         } catch (Exception e) {
             result.IsSuccess = false;
             result.AddErrorMessage(e.getMessage());

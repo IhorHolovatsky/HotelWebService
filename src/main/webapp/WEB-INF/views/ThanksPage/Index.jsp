@@ -8,7 +8,7 @@
     <tiles:putAttribute name="body">
 
             <h3>Thank you ! We will contact you shortly!
-                <a href="Contact"> Go to contacts</a></h3>
+                <a href="<c:url value="/Contact"></c:url>"> Go to contacts</a></h3>
 
 
     </tiles:putAttribute>

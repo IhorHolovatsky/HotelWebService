@@ -15,8 +15,9 @@
 
         <div class="container">
 
+            <c:url var="register" value="/Register"></c:url>
 
-            <form method="POST" action="/Register" class="form-signin">
+            <form method="POST" action="${register}" class="form-signin">
                 <h2 class="form-heading">Register New User</h2>
                 <br/>
                 <div class="form-group ${error != null ? 'has-error' : ''}">
@@ -43,7 +44,7 @@
 
                     <span>${error}</span>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-                    <h4 class="text-center"><a href="#">Cancel</a></h4>
+                    <h4 class="text-center"><a href="<c:url value="/login"/>">Cancel</a></h4>
                 </div>
             </form>
 

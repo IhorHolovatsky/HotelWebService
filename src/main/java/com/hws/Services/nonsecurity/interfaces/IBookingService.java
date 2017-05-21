@@ -16,4 +16,5 @@ public interface IBookingService {
     ResponseWrapper<List<Room>> getAvailableRooms(Date startDate, Date endDate);
     ResponseWrapper<List<Room>> getAvailableRooms(Date startDate, Date endDate, UUID roomType);
     ResponseWrapper<List<Booking>> GetCustomerBookings(UUID customerId);
+    ResponseWrapper<Boolean> RemoveBooking(UUID bookingId);
 }

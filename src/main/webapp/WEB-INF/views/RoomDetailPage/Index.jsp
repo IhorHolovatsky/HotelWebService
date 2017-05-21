@@ -21,7 +21,9 @@
                                 <div class="col-md-12">
 
                                     <div class="product">
-                                        <img src="/GetImage?roomId=${RoomId}">
+
+                                        <c:url var="getImage" value="/GetImage"></c:url>
+                                        <img src="${getImage}?roomId=${RoomId}">
                                     </div>
                                 </div>
 
@@ -39,7 +41,8 @@
                                     <hr>
 
                                     <div class="btn-group cart">
-                                        <form method="POST" action="/Secured/RoomDetailPage/Booking">
+                                        <c:url var="addBooking" value="/Secured/RoomDetailPage/Booking"></c:url>
+                                        <form method="POST" action="${addBooking}">
 
                                             <input type="hidden" name="RoomId" value="${RoomId}"/>
                                             <input type="hidden" name="StartDate" value="${StartDate}"/>

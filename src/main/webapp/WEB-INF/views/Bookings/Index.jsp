@@ -11,8 +11,7 @@
                 src="${pageContext.servletContext.contextPath}/content/js/CustomTabs.js"></script>
         <script>
             $(document).ready(function(){
-
-                $("#searchButton").on('click', function(){
+                $("#searchButton").unbind('click').on('click', function(){
 
                     var searchArgs = {};
                     searchArgs.RoomTypeId = selectedRoomType;
@@ -28,10 +27,14 @@
                         data: JSON.stringify(searchArgs),
                         success: function (data) {
                             $("#rooms").html(data);
+                            initButtons();
                         }
                     });
                 })
+                initButtons();
+            });
 
+            function initButtons(){
                 $(".bookRoom").on('click', function(e){
                     var bookUrl = '<c:url value="/Secured/RoomDetailPage" />';
                     var roomId = e.target.attributes["data-room-id"].value;
@@ -42,7 +45,7 @@
                         "&startDateString=" + startDate +
                         "&endDateString=" + endDate;
                 });
-            });
+            }
         </script>
     </tiles:putAttribute>
 

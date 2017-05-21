@@ -1,4 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <tiles:insertDefinition name="defaultLayout">
     <tiles:putAttribute name="title">Index Page</tiles:putAttribute>
 
@@ -39,8 +40,8 @@
                        if (!selectedDate){
                            selectedDate = new Date().toDefaultDateFormat();
                        }
-
-                       window.location.href = "/Rooms?startDateString=" + selectedDate;
+                        <c:url var="roomsUrl" value="/Rooms"></c:url>
+                       window.location.href = "${roomsUrl}?startDateString=" + selectedDate;
                    })
                 });
             </script>

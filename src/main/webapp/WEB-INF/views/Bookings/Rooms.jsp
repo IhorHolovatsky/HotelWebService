@@ -8,7 +8,8 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-3">
-                        <img width="150px" src="/GetImage?roomId=${room.roomId}">
+                        <c:url var="getImage" value="/GetImage"></c:url>
+                        <img width="150px" src="${getImage}?roomId=${room.roomId}">
                     </div>
                     <div class="col-md-7">
                         <div class="col-md-12">

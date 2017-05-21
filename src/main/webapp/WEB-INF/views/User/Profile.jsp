@@ -9,7 +9,9 @@
                 <h2>Your Profile</h2>
                 <br/>
                 <div class="${errorMessage != null ? 'has-error' : ''}">
-                    <form action="/Secured/User/Profile" method="post">
+
+                    <c:url var="updateProfile" value="/Secured/User/Profile"></c:url>
+                    <form action="${updateProfile}" method="post">
                         <input type="hidden" name="UserId" value="${userProfile.userId}">
                         <input type="hidden" name="CustomerId" value="${userProfile.customerId}">
                         <input type="hidden" name="Customer.CustomerId" value="${userProfile.customer.customerId}">
@@ -67,7 +69,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" style="height: 500px; overflow-y: scroll">
                 <h2>Your Bookings</h2>
                 <br/>
                 <div class="container-fluid">
@@ -78,5 +80,30 @@
             </div>
         </div>
 
+        <tiles:putAttribute name="scripts">
+            <script>
+                $(document).ready(function(){
+                    initButtons();
+                });
+
+                function initButtons(){
+                    $(".removeBooking").unbind('click').on('click', function(e){
+                        var bookId = e.target.attributes["data-booking-id"].value;
+
+                        <c:url var="deleteBooking" value="/Secured/User/DeleteBooking"></c:url>
+                        $.ajax({
+                            url: '${deleteBooking}?bookingUUID=' + bookId,
+                            contentType: "application/json",
+                            dataType: "html",
+                            method: "POST",
+                            success: function (data) {
+                                $("#bookings").html(data);
+                                initButtons();
+                            }
+                        });
+                    });
+                }
+            </script>
+        </tiles:putAttribute>
     </tiles:putAttribute>
 </tiles:insertDefinition>

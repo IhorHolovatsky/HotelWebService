@@ -3,6 +3,7 @@ package DAOTests;
 import com.hws.DAO.UserDAO;
 import com.hws.hibernate.models.Role;
 import com.hws.hibernate.models.User;
+import com.util.DateTimeUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,6 +46,9 @@ public class UserDAOTest {
 
     @Test
     public void TestMock(){
+
+        Date date = DateTimeUtil.getTodayDate();
+
         Session actualSession = _sessionFactory.getCurrentSession();
         assertSame(_session, actualSession);
     }
