@@ -35,11 +35,11 @@
                         <div class="col-md-5">
                                 ${BookingRoom.getEndDateFormat()}
                         </div>
-                        <div class="col-md-3">
-                            <b>Price:</b>
+                        <div class="col-md-5">
+                            <b>Amount Paid:</b>
                         </div>
-                        <div class="col-md-9">
-                            $${room .price}
+                        <div class="col-md-7">
+                            $${booking.getRoomCost()}
                         </div>
                         <div class="col-md-5">
                             <b>Additional Notes:</b>

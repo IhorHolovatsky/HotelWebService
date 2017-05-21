@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -68,6 +69,25 @@ public class Booking {
         if (dateTimeMade == null)
             return "";
 
-        return new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(dateTimeMade);
+        return new SimpleDateFormat("dd/MM/yyyy hh:mm a").format(dateTimeMade);
+    }
+
+    public String getRoomCost(){
+        BookingRoom booking = getBookingRooms().get(0);
+
+        if (booking == null)
+            return null;
+
+
+        int diffInDays = (int) ((booking.getEndDate().getTime() - booking.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
+
+        String currentPrice = booking.getRoom().getPrice().toString();
+
+
+        if(diffInDays != 0){
+            currentPrice  = booking.getRoom().getPrice().multiply(new BigDecimal(diffInDays)).toString();
+        }
+
+        return currentPrice;
     }
 }

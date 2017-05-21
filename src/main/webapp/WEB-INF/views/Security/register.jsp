@@ -43,7 +43,7 @@
 
                     <span>${error}</span>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-                    <h4 class="text-center"><a href="#">Cancel</a></h4>
+                    <h4 class="text-center"><a href="<c:url value="/login"/>">Cancel</a></h4>
                 </div>
             </form>
 
