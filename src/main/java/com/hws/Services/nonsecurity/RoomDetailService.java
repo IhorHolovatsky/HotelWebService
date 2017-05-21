@@ -76,6 +76,7 @@ public class RoomDetailService implements IRoomDetailService {
         }
         catch (Exception ex){
             result.setIsSuccess(false);
+            result.AddErrorMessage(ex.getMessage());
         }
         finally {
             return result;

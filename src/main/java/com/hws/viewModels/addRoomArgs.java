@@ -27,7 +27,7 @@ public class addRoomArgs {
         if (HotelId == null)
             return null;
 
-        return UUID.fromString(RoomTypeId);
+        return UUID.fromString(HotelId);
     }
 
     public UUID getRoomTypeUUID(){

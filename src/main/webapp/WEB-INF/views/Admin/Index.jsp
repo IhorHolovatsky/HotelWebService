@@ -18,13 +18,14 @@
                 $("#addRoom").on('click', function(){
 
                     var addRoomArgs = {};
-                    addRoomArgs.roomID = $("#roomID").val();
-                    addRoomArgs.hotelID = $("#hotelID").val();
-                    addRoomArgs.roomTypeID = $("#roomTypeID").val();
-                    addRoomArgs.name = $("#name").val();
-                    addRoomArgs.price = parseFloat($('#price').val()).toFixed(2);
-                    addRoomArgs.number = $("#number").val();
-                    addRoomArgs.floor = $("#floor").val();
+                    addRoomArgs.RoomId = $("#roomID").val();
+                    addRoomArgs.HotelId = $("#hotelID").val();
+                    addRoomArgs.RoomTypeId = $("#roomTypeID").val();
+                    addRoomArgs.Name = $("#name").val();
+                    addRoomArgs.Price = parseFloat($('#price').val()).toFixed(2);
+                    addRoomArgs.Number = $("#number").val();
+                    addRoomArgs.Floor = $("#floor").val();
+                    addRoomArgs.Comment = $("#comment").val();
 
 
                     <c:url var="addRoomUrl" value="/Secured/Admin/AddRoom"></c:url>
@@ -48,7 +49,7 @@
                 <div class="col-6 col-sm-6 col-md-6 flex-first">
                     <h2>All Rooms</h2>
                     <div id="roomsDb">
-                        <jsp:include page="RoomsDb.jsp"/>
+                        <jsp:include page="RoomsDB.jsp"/>
                     </div>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 flex-last">

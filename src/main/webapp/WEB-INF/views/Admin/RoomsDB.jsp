@@ -12,26 +12,27 @@
         <th>Delete</th>
     </tr>
     </thead>
-    <c:forEach items="${allRooms}" var="rooms">
+
     <tbody>
+    <c:forEach items="${allRooms}" var="rooms">
     <tr>
         <td>
-            <c:out value="${rooms.roomId}" />
+            <c:out value="${rooms.roomId}"/>
         </td>
         <td>
-            <c:out value="${rooms.floor}" />
+            <c:out value="${rooms.floor}"/>
         </td>
         <td>
-            <c:out value="${rooms.number}" />
+            <c:out value="${rooms.number}"/>
         </td>
         <td>
-            <c:out value="${rooms.price}" />
+            <c:out value="${rooms.price}"/>
         </td>
         <td>
-            <c:out value="${rooms.name}" />
+            <c:out value="${rooms.name}"/>
         </td>
         <td>
-            <c:out value="${rooms.roomType.roomType}" />
+            <c:out value="${rooms.roomType.roomType}"/>
         </td>
         <td>
             <button class="btn btn-warning .btn-sm" id="edit" data-toggle="confirmation">
@@ -44,6 +45,8 @@
             </button>
         </td>
     </tr>
-    <tbody>
     </c:forEach>
+
+    <tbody>
+
 </table>

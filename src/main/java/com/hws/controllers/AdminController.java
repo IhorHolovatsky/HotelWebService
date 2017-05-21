@@ -35,10 +35,11 @@ public class AdminController extends ControllerBase {
         ModelAndView model = new ModelAndView("Admin/Index");
         ResponseWrapper<List<Room>> responseWrapper = _roomDetailService.GetAllRooms();
 
-        if(responseWrapper.IsSuccess){
-            List<Room> allRooms = responseWrapper.ResponseData;
-            model.addObject("allRooms", allRooms);
-        } else{ }
+        if(!responseWrapper.IsSuccess)
+            return new ModelAndView("redirect:/Error?errorMessage=" + responseWrapper.getErrorMessage());
+
+        List<Room> allRooms = responseWrapper.ResponseData;
+        model.addObject("allRooms", allRooms);
 
         return model;
     }
@@ -46,7 +47,7 @@ public class AdminController extends ControllerBase {
     @RequestMapping(value = "/Secured/Admin/AddRoom", method = RequestMethod.POST)
     public @ResponseBody ModelAndView addRoom(@RequestBody addRoomArgs addArgs,
                                                         HttpServletRequest servletRequest){
-        ModelAndView model = new ModelAndView("Admin/Index");
+        ModelAndView model = new ModelAndView("Admin/RoomsDB");
         Room room = new Room(addArgs.getRoomUUID(), addArgs.getHotelUUID(), addArgs.getRoomTypeUUID(), addArgs.Name
                 ,addArgs.Price, addArgs.Number, addArgs.Floor, addArgs.Comment);
 
@@ -55,8 +56,9 @@ public class AdminController extends ControllerBase {
         if (!result.IsSuccess)
             return null;
 
-        model.addObject("newRoom", result.ResponseData);
+        ResponseWrapper<List<Room>> responseWrapper = _roomDetailService.GetAllRooms();
+        model.addObject("allRooms", responseWrapper.ResponseData);
         return model;
     }
-
 }
+
