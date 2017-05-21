@@ -1,5 +1,6 @@
 package com.hws.controllers;
 
+import com.hws.DAO.interfaces.IRoomDAO;
 import com.hws.Services.nonsecurity.interfaces.IRoomDetailService;
 import com.hws.SharedEntities.ResponseWrapper;
 import com.hws.hibernate.models.Room;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by nazar on 5/13/2017.
@@ -28,6 +30,7 @@ public class AdminController extends ControllerBase {
 
     @Autowired
     IRoomDetailService _roomDetailService;
+
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value="/Secured/Admin/Index", method = RequestMethod.GET)
@@ -47,11 +50,29 @@ public class AdminController extends ControllerBase {
     @RequestMapping(value = "/Secured/Admin/AddRoom", method = RequestMethod.POST)
     public @ResponseBody ModelAndView addRoom(@RequestBody addRoomArgs addArgs,
                                                         HttpServletRequest servletRequest){
-        ModelAndView model = new ModelAndView("Admin/RoomsDB");
-        Room room = new Room(addArgs.getRoomUUID(), addArgs.getHotelUUID(), addArgs.getRoomTypeUUID(), addArgs.Name
-                ,addArgs.Price, addArgs.Number, addArgs.Floor, addArgs.Comment);
 
+        ModelAndView model = new ModelAndView("Admin/RoomsDB");
+        Room room = new Room(UUID.randomUUID(), UUID.fromString("91537EB6-46CA-4926-988D-E1C12257D4CA"),
+                addArgs.getRoomTypeUUID(), addArgs.Name
+                ,addArgs.Price, addArgs.Number, addArgs.Floor, addArgs.Comment);
+room.setImage(addArgs.getImageBytes());
         ResponseWrapper<Room> result = _roomDetailService.AddNewRoom(room);
+
+        if (!result.IsSuccess)
+            return null;
+
+        ResponseWrapper<List<Room>> responseWrapper = _roomDetailService.GetAllRooms();
+        model.addObject("allRooms", responseWrapper.ResponseData);
+        return model;
+    }
+
+    @RequestMapping(value = "/Secured/Admin/DeleteRoom", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView deleteRoom(@RequestBody String roomId){
+        ModelAndView model = new ModelAndView("Admin/RoomsDB");
+
+        UUID roomUUUID = UUID.fromString(roomId);
+
+        ResponseWrapper<Room> result = _roomDetailService.DeleteRoom(roomUUUID);
 
         if (!result.IsSuccess)
             return null;

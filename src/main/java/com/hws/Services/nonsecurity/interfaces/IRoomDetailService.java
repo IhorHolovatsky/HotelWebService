@@ -15,4 +15,6 @@ public interface IRoomDetailService {
     ResponseWrapper<Room> GetCurrentRoom(UUID roomId);
     ResponseWrapper<List<Room>> GetAllRooms();
     ResponseWrapper<Room> AddNewRoom(Room room);
+    ResponseWrapper<Room> DeleteRoom(UUID roomId);
+    ResponseWrapper<Room> EditRoom(Room room);
 }

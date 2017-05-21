@@ -1,33 +1,29 @@
 package com.hws.viewModels;
 
+import com.util.StringUtil;
+
 import java.math.BigDecimal;
+import java.util.Base64;
 import java.util.UUID;
 
 /**
  * Created by nazar on 5/14/2017.
  */
 public class addRoomArgs {
-    public String RoomId;
-    public String HotelId;
+
     public String RoomTypeId;
     public String Name;
     public BigDecimal Price;
     public Integer Number;
     public Integer Floor;
     public String Comment;
+    public String ImageData;
 
-    public UUID getRoomUUID(){
-        if (RoomId == null)
-            return null;
-
-        return UUID.fromString(RoomTypeId);
+    public String getImageData(){
+        return ImageData;
     }
-
-    public UUID getHotelUUID(){
-        if (HotelId == null)
-            return null;
-
-        return UUID.fromString(HotelId);
+    public void setImageData(String imageData){
+        ImageData = imageData;
     }
 
     public UUID getRoomTypeUUID(){
@@ -70,6 +66,14 @@ public class addRoomArgs {
             return null;
 
         return Comment;
+    }
+
+    public byte[] getImageBytes(){
+        if (StringUtil.IsNullOrEmpty(ImageData)){
+            return null;
+        }
+
+        return Base64.getDecoder().decode(ImageData);
     }
 
 }

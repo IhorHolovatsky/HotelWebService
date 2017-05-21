@@ -83,4 +83,32 @@ public class RoomDetailService implements IRoomDetailService {
         }
     }
 
+    @Override
+    public ResponseWrapper<Room> DeleteRoom(UUID roomId) {
+        ResponseWrapper<Room> result = new ResponseWrapper<Room>();
+
+        try {
+
+            Room currentRoom = _roomDao.GetRoomById(roomId);
+
+            _roomDao.DeleteRoom(currentRoom);
+
+            result.setIsSuccess(true);
+
+        }
+        catch (Exception ex){
+            result.setIsSuccess(false);
+            result.AddErrorMessage(ex.getMessage());
+        }
+        finally {
+            return result;
+        }
+    }
+
+    @Override
+    public ResponseWrapper<Room> EditRoom(Room room) {
+        return null;
+    }
+
+
 }
