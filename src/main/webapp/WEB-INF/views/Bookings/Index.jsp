@@ -33,7 +33,7 @@
                 })
 
                 $(".bookRoom").on('click', function(e){
-                    var bookUrl = '<c:url value="/RoomDetailPage" />';
+                    var bookUrl = '<c:url value="/Secured/RoomDetailPage" />';
                     var roomId = e.target.attributes["data-room-id"].value;
                     var startDate = $("#startDate").val();
                     var endDate = $("#endDate").val();

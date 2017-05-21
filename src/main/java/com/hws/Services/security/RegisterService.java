@@ -1,8 +1,10 @@
 package com.hws.Services.security;
 
+import com.hws.DAO.interfaces.ICustomerDAO;
 import com.hws.DAO.interfaces.IUserDAO;
 import com.hws.Services.security.interfaces.IRegisterService;
 import com.hws.SharedEntities.ResponseWrapper;
+import com.hws.hibernate.models.Customer;
 import com.hws.hibernate.models.User;
 import com.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,22 @@ public class RegisterService implements IRegisterService {
     @Autowired
     IUserDAO _userDao;
 
+    @Autowired
+    ICustomerDAO _customerDao;
+
     @Override
     public ResponseWrapper<User> RegisterNewUser(User newUser) {
         ResponseWrapper<User> result = Validate(newUser);
 
         if (!result.IsSuccess)
             return result;
+
+        Customer newCustomer = new Customer();
+
+        newCustomer = _customerDao.AddNewCustomer(newCustomer);
+
+        newUser.setCustomerId(newCustomer.getCustomerId());
+        newUser.setCustomer(newCustomer);
 
         newUser = _userDao.AddNewUser(newUser);
 

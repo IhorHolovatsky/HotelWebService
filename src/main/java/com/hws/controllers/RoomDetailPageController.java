@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,8 +38,8 @@ public class RoomDetailPageController extends ControllerBase {
     @Autowired
     IDetailBookingService _bookingService;
 
-    @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
-   // @RequestMapping(value="/Secured/RoomDetailPage", method = RequestMethod.GET)
+   // @RequestMapping(value="/RoomDetailPage", method = RequestMethod.GET)
+    @RequestMapping(value="/Secured/RoomDetailPage", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated()")
     public ModelAndView Index(String roomId,String startDateString, String endDateString){
         if (roomId == null){
@@ -56,7 +57,6 @@ public class RoomDetailPageController extends ControllerBase {
 
                 model.addObject("FacilitiesList",GetFacilitiesListFromRoomFacilities(currentRoom));
 
-
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
 
                 Date startDate = new Date();
@@ -69,6 +69,18 @@ public class RoomDetailPageController extends ControllerBase {
                     model.addObject("IsSuccess",false);
                 }
 
+                int diffInDays = (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+
+                String currentPrice = currentRoom.getPrice().toString();
+
+
+                if(diffInDays != 0){
+                    currentPrice  = currentRoom.getPrice().multiply(new BigDecimal(diffInDays)).toString();
+                }
+
+
+                model.addObject("CurrentPrice",currentPrice);
+
                 String bookingDateString = "You booking room from " + startDateString + " to " + endDateString;
 
                 model.addObject("StartDate",startDateString);
@@ -80,6 +92,8 @@ public class RoomDetailPageController extends ControllerBase {
                 model.addObject("BookingTime",bookingDateString);
 
                 model.addObject("Room",currentRoom);
+
+                model.addObject("UserId",UUID.fromString(this.getUser().getUserId().toString()));
             }else{
                 model.addObject("IsSuccess",false);
             }
@@ -91,8 +105,8 @@ public class RoomDetailPageController extends ControllerBase {
         return model;
     }
 
-    //@RequestMapping(value = "/Secured/RoomDetailPage/Booking", method = RequestMethod.POST)
-    @RequestMapping(value = "/RoomDetailPage/Booking", method = RequestMethod.POST)
+    @RequestMapping(value = "/Secured/RoomDetailPage/Booking", method = RequestMethod.POST)
+  //  @RequestMapping(value = "/RoomDetailPage/Booking", method = RequestMethod.POST)
     @ModelAttribute(value = "com/hws/viewModels/BookingViewModel.java")
     public ModelAndView booking(BookingViewModel model){
         ModelAndView toReturn = new ModelAndView("redirect:/ThanksPage");
