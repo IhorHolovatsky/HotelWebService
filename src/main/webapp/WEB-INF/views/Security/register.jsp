@@ -15,8 +15,9 @@
 
         <div class="container">
 
+            <c:url var="register" value="/Register"></c:url>
 
-            <form method="POST" action="/Register" class="form-signin">
+            <form method="POST" action="${register}" class="form-signin">
                 <h2 class="form-heading">Register New User</h2>
                 <br/>
                 <div class="form-group ${error != null ? 'has-error' : ''}">

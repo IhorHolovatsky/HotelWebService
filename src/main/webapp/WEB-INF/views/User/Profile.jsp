@@ -9,7 +9,9 @@
                 <h2>Your Profile</h2>
                 <br/>
                 <div class="${errorMessage != null ? 'has-error' : ''}">
-                    <form action="/Secured/User/Profile" method="post">
+
+                    <c:url var="updateProfile" value="/Secured/User/Profile"></c:url>
+                    <form action="${updateProfile}" method="post">
                         <input type="hidden" name="UserId" value="${userProfile.userId}">
                         <input type="hidden" name="CustomerId" value="${userProfile.customerId}">
                         <input type="hidden" name="Customer.CustomerId" value="${userProfile.customer.customerId}">
@@ -88,8 +90,9 @@
                     $(".removeBooking").unbind('click').on('click', function(e){
                         var bookId = e.target.attributes["data-booking-id"].value;
 
+                        <c:url var="deleteBooking" value="/Secured/User/DeleteBooking"></c:url>
                         $.ajax({
-                            url: '/Secured/User/DeleteBooking?bookingUUID=' + bookId,
+                            url: '${deleteBooking}?bookingUUID=' + bookId,
                             contentType: "application/json",
                             dataType: "html",
                             method: "POST",
