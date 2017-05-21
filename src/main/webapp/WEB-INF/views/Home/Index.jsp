@@ -37,7 +37,7 @@
                    $("#roomLink").on('click', function(){
                        var selectedDate = $("#startDate").val();
                        if (!selectedDate){
-                           selectedDate = new Date().toDateString();
+                           selectedDate = new Date().toDefaultDateFormat();
                        }
 
                        window.location.href = "/Rooms?startDateString=" + selectedDate;
