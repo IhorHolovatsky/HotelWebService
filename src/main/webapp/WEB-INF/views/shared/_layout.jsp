@@ -25,6 +25,7 @@
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/bootstrap-datepicker.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/lib/spin.js"></script>
     <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/Spinner.js"></script>
+    <script type='text/javascript' src="${pageContext.servletContext.contextPath}/content/js/Utils.js"></script>
 
 </head>
 <body>
