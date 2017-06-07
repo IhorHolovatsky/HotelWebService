@@ -4,6 +4,13 @@ Documentation - [Doc Link](https://github.com/IhorHolovatsky/HotelWebService/blo
 Course Work 4
 
 Currently available by this url: http://35.163.186.248:8088/hws/login
+TeamCity CI: http://35.163.186.248:8080/overview.html
+username: guest 
+password: 1
+
+Agile Tools https://pacan.myjetbrains.com/youtrack/dashboard 
+(you can log in as guest)
+
 (will be available before 25/04/2018)
 
 
