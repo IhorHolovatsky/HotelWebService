@@ -1,4 +1,6 @@
 # HotelWebService
+Documentation - [Doc Link](https://github.com/IhorHolovatsky/HotelWebService/blob/master/Kursova_Java.doc), [Pdf Link](https://github.com/IhorHolovatsky/HotelWebService/blob/master/Kursova_Java.pdf)
+
 Course Work 4
 
 Currently available by this url: http://35.163.186.248:8088/hws/login
